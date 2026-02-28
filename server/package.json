@@ -1,0 +1,17 @@
+{
+  "name": "scene-cowboy-server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node --loader ts-node/esm wsServer.ts",
+    "dev": "node --watch --loader ts-node/esm wsServer.ts"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.0",
+    "ts-node": "^10.9.0",
+    "typescript": "~5.9.3"
+  }
+}

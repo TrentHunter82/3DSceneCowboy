@@ -1,0 +1,21 @@
+# Swarm Progress Log
+
+## Learnings
+(Patterns discovered across iterations - READ THIS FIRST)
+
+- Use `visible` prop on R3F objects, never conditional render for visibility
+- Flat scene graph (array) is better than tree for undo/redo in editors
+- Check for existing files before creating new ones when agents run in parallel
+- TypeScript + Vite build verification is the final quality gate before phase-complete
+
+---
+
+## Phase 1 - Project Scaffold (COMPLETE)
+- Vite + React 19 + TypeScript + Tailwind CSS 4 + React Three Fiber 9
+- 3D viewport with western theme (desert ground, sunset environment, earthy palette)
+- Object CRUD: add/remove/duplicate 6 primitives (box, sphere, cylinder, cone, plane, torus)
+- Transform gizmos (translate, rotate, scale via Drei TransformControls)
+- Undo/redo with snapshot history
+- Save/load scene serialization with migration support
+- Keyboard shortcuts (Q/W/E/R, Delete, Ctrl+Z, Ctrl+Y, Ctrl+D)
+- TypeScript and Vite build pass clean

@@ -1,0 +1,520 @@
+@import "tailwindcss";
+
+@theme {
+  /* ═══ Brutalist Dark — Teenage Engineering × Apple ═══
+     Deep blacks, glowing edge accents, industrial surfaces.
+     Hardware-inspired with LED-style amber + cyan highlights. */
+
+  /* Sand: Text hierarchy (light on dark) */
+  --color-sand-50: #fafafa;
+  --color-sand-100: #f0f0f0;
+  --color-sand-200: #e0e0e0;
+  --color-sand-300: #c0c0c0;
+  --color-sand-400: #999999;
+  --color-sand-500: #777777;
+  --color-sand-600: #555555;
+  --color-sand-700: #3a3a3a;
+  --color-sand-800: #2a2a2a;
+  --color-sand-900: #1a1a1a;
+
+  /* Dust: Surface/background hierarchy (deepest blacks) */
+  --color-dust-50: #e8e8e8;
+  --color-dust-100: #c0c0c0;
+  --color-dust-200: #888888;
+  --color-dust-300: #666666;
+  --color-dust-400: #4a4a4a;
+  --color-dust-500: #383838;
+  --color-dust-600: #222222;
+  --color-dust-700: #181818;
+  --color-dust-800: #101010;
+  --color-dust-900: #080808;
+
+  /* Rust: Primary accent — warm orange glow */
+  --color-rust-300: #ffaa66;
+  --color-rust-400: #ff8844;
+  --color-rust-500: #ff6600;
+  --color-rust-600: #cc5200;
+  --color-rust-700: #993d00;
+  --color-rust-900: #331500;
+
+  /* Sunset: Secondary warm — amber highlights */
+  --color-sunset-400: #ffaa44;
+  --color-sunset-500: #ff9922;
+
+  /* Cyan: Secondary accent — cool contrast */
+  --color-cyan-300: #77eeff;
+  --color-cyan-400: #44e5ff;
+  --color-cyan-500: #00d4ff;
+  --color-cyan-600: #00a8cc;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+}
+
+/* ── Reset ──────────────────────────────────────────────────────── */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-dust-900);
+  color: var(--color-sand-200);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Glow Utilities ─────────────────────────────────────────────── */
+
+.glow-orange {
+  box-shadow:
+    0 0 12px rgba(255, 102, 0, 0.15),
+    inset 0 0 1px rgba(255, 102, 0, 0.08);
+}
+
+.glow-orange-strong {
+  box-shadow:
+    0 0 20px rgba(255, 102, 0, 0.3),
+    0 0 6px rgba(255, 102, 0, 0.4),
+    inset 0 0 2px rgba(255, 102, 0, 0.1);
+}
+
+.glow-cyan {
+  box-shadow:
+    0 0 12px rgba(0, 212, 255, 0.15),
+    inset 0 0 1px rgba(0, 212, 255, 0.08);
+}
+
+.glow-cyan-strong {
+  box-shadow:
+    0 0 20px rgba(0, 212, 255, 0.3),
+    0 0 6px rgba(0, 212, 255, 0.4);
+}
+
+.glow-border-orange {
+  border-color: rgba(255, 102, 0, 0.35);
+  box-shadow: 0 0 10px rgba(255, 102, 0, 0.1);
+}
+
+.glow-border-cyan {
+  border-color: rgba(0, 212, 255, 0.35);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
+}
+
+/* LED-style edge glow — apply to panels for industrial accent lines */
+.glow-edge-top {
+  box-shadow: inset 0 1px 0 0 rgba(255, 102, 0, 0.2), 0 -1px 6px rgba(255, 102, 0, 0.06);
+}
+
+.glow-edge-bottom {
+  box-shadow: inset 0 -1px 0 0 rgba(255, 102, 0, 0.2), 0 1px 6px rgba(255, 102, 0, 0.06);
+}
+
+.glow-edge-left {
+  box-shadow: inset 1px 0 0 0 rgba(255, 102, 0, 0.18), -1px 0 6px rgba(255, 102, 0, 0.05);
+}
+
+.glow-edge-right {
+  box-shadow: inset -1px 0 0 0 rgba(255, 102, 0, 0.18), 1px 0 6px rgba(255, 102, 0, 0.05);
+}
+
+/* LED status dot indicators */
+.led-dot-orange {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-rust-500);
+  box-shadow: 0 0 6px rgba(255, 102, 0, 0.6), 0 0 2px rgba(255, 102, 0, 0.8);
+}
+
+.led-dot-cyan {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-cyan-500);
+  box-shadow: 0 0 6px rgba(0, 212, 255, 0.6), 0 0 2px rgba(0, 212, 255, 0.8);
+}
+
+/* ── Panel Styling ──────────────────────────────────────────────── */
+
+.panel {
+  background-color: var(--color-dust-800);
+  border: 1px solid var(--color-dust-600);
+  border-radius: 6px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.panel-elevated {
+  background-color: var(--color-dust-800);
+  border: 1px solid rgba(255, 102, 0, 0.18);
+  border-radius: 6px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.6),
+    0 0 1px rgba(255, 102, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* Brutalist panel — deeper with subtle inner bevel */
+.panel-brutalist {
+  background: linear-gradient(180deg, var(--color-dust-800) 0%, #0c0c0c 100%);
+  border: 1px solid var(--color-dust-600);
+  border-radius: 4px;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Modal overlay glass */
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Modal container with premium shadow */
+.modal-container {
+  background: linear-gradient(180deg, var(--color-dust-800) 0%, #0c0c0c 100%);
+  border: 1px solid rgba(255, 102, 0, 0.15);
+  border-radius: 8px;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.8),
+    0 0 1px rgba(255, 102, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Card inset — for nested content cards */
+.card-inset {
+  background: var(--color-dust-900);
+  border: 1px solid var(--color-dust-600);
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* ── LED Accent Strip — use on panel headers or dividers ───────── */
+
+.led-strip-orange {
+  position: relative;
+}
+
+.led-strip-orange::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.5), transparent);
+  box-shadow: 0 0 8px rgba(255, 102, 0, 0.3), 0 0 2px rgba(255, 102, 0, 0.5);
+}
+
+.led-strip-cyan {
+  position: relative;
+}
+
+.led-strip-cyan::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.3), 0 0 2px rgba(0, 212, 255, 0.5);
+}
+
+/* Vertical LED strip */
+.led-strip-v-orange {
+  position: relative;
+}
+
+.led-strip-v-orange::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(255, 102, 0, 0.4), transparent);
+  box-shadow: 0 0 6px rgba(255, 102, 0, 0.2), 0 0 2px rgba(255, 102, 0, 0.4);
+}
+
+.led-strip-v-cyan {
+  position: relative;
+}
+
+.led-strip-v-cyan::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+  box-shadow: 0 0 6px rgba(0, 212, 255, 0.15), 0 0 2px rgba(0, 212, 255, 0.3);
+}
+
+/* ── Viewport Frame ────────────────────────────────────────────── */
+
+.viewport-frame {
+  position: relative;
+}
+
+.viewport-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 102, 0, 0.06);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.viewport-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Active Tool / Status Indicators ─────────────────────────── */
+
+.tool-active {
+  background: var(--color-rust-500);
+  box-shadow:
+    0 0 14px rgba(255, 102, 0, 0.4),
+    0 0 4px rgba(255, 102, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.tool-active-cyan {
+  background: rgba(0, 212, 255, 0.15);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow:
+    0 0 12px rgba(0, 212, 255, 0.2),
+    inset 0 0 4px rgba(0, 212, 255, 0.05);
+}
+
+/* ── Sidebar Panel ─────────────────────────────────────────────── */
+
+.sidebar-panel {
+  background: linear-gradient(180deg, #0e0e0e 0%, #080808 100%);
+}
+
+/* ── Section Header with LED accent ────────────────────────────── */
+
+.section-header {
+  position: relative;
+  background: linear-gradient(90deg, rgba(255, 102, 0, 0.04) 0%, transparent 80%);
+}
+
+.section-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 2px;
+  background: var(--color-rust-500);
+  box-shadow: 0 0 10px rgba(255, 102, 0, 0.5), 0 0 3px rgba(255, 102, 0, 0.7);
+  border-radius: 1px;
+}
+
+/* ── Primary Action Button ─────────────────────────────────────── */
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-rust-500), var(--color-rust-600));
+  color: #fff;
+  border: 1px solid rgba(255, 102, 0, 0.4);
+  border-radius: 4px;
+  font-weight: 500;
+  box-shadow:
+    0 0 12px rgba(255, 102, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-rust-400), var(--color-rust-500));
+  box-shadow:
+    0 0 20px rgba(255, 102, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── Toolbar Button Group ──────────────────────────────────────── */
+
+.toolbar-group {
+  background: rgba(16, 16, 16, 0.6);
+  border: 1px solid rgba(34, 34, 34, 0.5);
+  border-radius: 6px;
+  padding: 2px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Badge / Status Dot ────────────────────────────────────────── */
+
+.status-dot-active {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-rust-500);
+  box-shadow: 0 0 6px rgba(255, 102, 0, 0.6), 0 0 2px rgba(255, 102, 0, 0.8);
+}
+
+.status-dot-cyan {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-cyan-500);
+  box-shadow: 0 0 6px rgba(0, 212, 255, 0.6), 0 0 2px rgba(0, 212, 255, 0.8);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-dust-500);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-rust-500);
+  box-shadow: 0 0 6px rgba(255, 102, 0, 0.3);
+}
+
+/* ── Input Styling ──────────────────────────────────────────────── */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  height: 4px;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: linear-gradient(90deg, var(--color-dust-600), var(--color-dust-500));
+  border-radius: 2px;
+  height: 3px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8844, var(--color-rust-500));
+  border: 2px solid var(--color-dust-900);
+  margin-top: -5.5px;
+  box-shadow: 0 0 10px rgba(255, 102, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 16px rgba(255, 102, 0, 0.7), 0 0 4px rgba(255, 102, 0, 0.9);
+}
+
+input[type="range"]::-moz-range-track {
+  background: linear-gradient(90deg, var(--color-dust-600), var(--color-dust-500));
+  border-radius: 2px;
+  height: 3px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8844, var(--color-rust-500));
+  border: 2px solid var(--color-dust-900);
+  box-shadow: 0 0 10px rgba(255, 102, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Text Inputs & Select ──────────────────────────────────────── */
+
+input[type="text"],
+input[type="number"],
+input[type="search"],
+select {
+  background-color: var(--color-dust-900);
+  border: 1px solid var(--color-dust-600);
+  color: var(--color-sand-200);
+  border-radius: 4px;
+  font-family: var(--font-sans);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+select:focus {
+  border-color: rgba(255, 102, 0, 0.5);
+  box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.12), 0 0 8px rgba(255, 102, 0, 0.08);
+  outline: none;
+}
+
+/* ── Checkbox accent ────────────────────────────────────────────── */
+
+input[type="checkbox"] {
+  accent-color: var(--color-rust-500);
+  cursor: pointer;
+}
+
+/* ── Selection ──────────────────────────────────────────────────── */
+
+::selection {
+  background: rgba(255, 102, 0, 0.3);
+  color: #fff;
+}
+
+/* ── Focus Ring ─────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: none;
+}
+
+/* ── Transitions ────────────────────────────────────────────────── */
+
+button, input, select {
+  transition: all 0.15s ease;
+}
+
+/* ── Light theme (override to maintain compatibility) ────────── */
+[data-theme="light"] {
+  --color-dust-50: #0a0a0a;
+  --color-dust-100: #141414;
+  --color-dust-200: #1e1e1e;
+  --color-dust-300: #2a2a2a;
+  --color-dust-400: #555555;
+  --color-dust-500: #777777;
+  --color-dust-600: #d0d0d0;
+  --color-dust-700: #e0e0e0;
+  --color-dust-800: #f2f2f2;
+  --color-dust-900: #fafafa;
+
+  --color-sand-50: #1a1a1a;
+  --color-sand-100: #2a2a2a;
+  --color-sand-200: #333333;
+  --color-sand-300: #555555;
+  --color-sand-400: #777777;
+}
