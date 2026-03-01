@@ -66,8 +66,7 @@ function App() {
         {!sidebarCollapsed && (
           <aside
             aria-label="Scene sidebar"
-            className="w-56 sidebar-panel border-r border-dust-600/20 flex flex-col shrink-0 led-strip-v-orange"
-            style={{ boxShadow: 'inset -1px 0 0 rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.04), 4px 0 12px rgba(0,0,0,0.5), 8px 0 32px rgba(0,0,0,0.4)' }}
+            className="w-56 sidebar-panel border-r border-dust-600/20 flex flex-col shrink-0 led-strip-v-orange panel-viewport-left"
           >
             <div className="flex-1 min-h-0 flex flex-col overflow-y-auto">
               <ObjectList />

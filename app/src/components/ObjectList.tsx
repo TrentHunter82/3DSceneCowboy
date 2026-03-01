@@ -420,11 +420,11 @@ export function ObjectList() {
         onDragLeave={handleDragLeave}
         onDragEnd={handleDragEnd}
         className={`
-          group flex items-center gap-1.5 py-1 pr-3 cursor-pointer transition-all duration-100
+          group flex items-center gap-1.5 py-1.5 pr-4 cursor-pointer transition-all duration-100
           focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-rust-500/50
           ${rowClasses}
         `}
-        style={{ paddingLeft: `${12 + depth * 14}px`, ...rowStyle }}
+        style={{ paddingLeft: `${16 + depth * 14}px`, ...rowStyle }}
       >
         {/* Expand/collapse toggle for parents; spacer for leaves */}
         {isParent ? (
@@ -507,7 +507,7 @@ export function ObjectList() {
 
   return (
     <div className="flex-1 min-h-0 flex flex-col">
-      <div className="px-3 py-3 border-b border-dust-600/25 section-header">
+      <div className="px-4 py-3 border-b border-dust-600/25 section-header">
         <h2 className="text-[11px] font-semibold text-dust-100 uppercase tracking-[0.12em] label-engraved">
           Scene
         </h2>
@@ -531,7 +531,7 @@ export function ObjectList() {
 
       <div className="flex-1 overflow-y-auto py-0.5" role="listbox" aria-label="Scene objects">
         {objects.length === 0 ? (
-          <div className="px-3 py-8 text-center">
+          <div className="px-4 py-8 text-center">
             <p className="text-dust-500 text-[11px]">No objects</p>
             <p className="text-dust-600 text-[10px] mt-1">
               Use the toolbar to add objects
@@ -556,7 +556,7 @@ export function ObjectList() {
       </div>
 
       {/* Footer stats */}
-      <div className="px-3 py-2 border-t border-dust-600/25 text-dust-400 text-[10px] flex justify-between font-medium tracking-wide led-strip-orange">
+      <div className="px-4 py-2 border-t border-dust-600/25 text-dust-400 text-[10px] flex justify-between font-medium tracking-wide led-strip-orange">
         <span>
           {isFiltering
             ? `${filteredObjects.length} of ${objects.length} object${objects.length !== 1 ? 's' : ''}`

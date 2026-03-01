@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  /* ═══ Black-on-Black Monochrome — Precision Instrument ═══
-     Ultra-dark matte surfaces, metallic depth, white-only indicators.
-     Inspired by high-end audio equipment. */
+  /* ═══ Warm Hardware Aesthetic — Teenage Engineering × Apple ═══
+     Deep black chassis with warm amber/orange accents and cool cyan
+     secondary. The viewport acts as a light source bleeding onto panels. */
 
   /* Sand: Text hierarchy (light on dark) */
   --color-sand-50: #fafafa;
@@ -23,29 +23,29 @@
   --color-dust-200: #757575;
   --color-dust-300: #555555;
   --color-dust-400: #3d3d3d;
-  --color-dust-500: #2e2e2e;
-  --color-dust-600: #222222;
-  --color-dust-700: #181818;
+  --color-dust-500: #363636;
+  --color-dust-600: #2a2a2a;
+  --color-dust-700: #1e1e1e;
   --color-dust-800: #0f0f0f;
   --color-dust-900: #080808;
 
-  /* Rust: Primary accent — white/silver indicators */
-  --color-rust-300: #e0e0e0;
-  --color-rust-400: #cccccc;
-  --color-rust-500: #b0b0b0;
-  --color-rust-600: #909090;
-  --color-rust-700: #6a6a6a;
-  --color-rust-900: #2a2a2a;
+  /* Rust: Primary accent — warm amber/orange (Teenage Engineering signature) */
+  --color-rust-300: #ffb380;
+  --color-rust-400: #ff9652;
+  --color-rust-500: #ff7a2e;
+  --color-rust-600: #e06218;
+  --color-rust-700: #b34d10;
+  --color-rust-900: #3d1a06;
 
-  /* Sunset: Secondary warm — neutral gray */
-  --color-sunset-400: #b8b8b8;
-  --color-sunset-500: #a0a0a0;
+  /* Sunset: Secondary warm — gold/amber for premium warmth */
+  --color-sunset-400: #f5c542;
+  --color-sunset-500: #d4a832;
 
-  /* Cyan: Secondary accent — cool silver */
-  --color-cyan-300: #d8d8e0;
-  --color-cyan-400: #c0c0cc;
-  --color-cyan-500: #a8a8b8;
-  --color-cyan-600: #8888a0;
+  /* Cyan: Secondary accent — electric blue counterbalance */
+  --color-cyan-300: #7ee8f8;
+  --color-cyan-400: #34c6e0;
+  --color-cyan-500: #1aa8c4;
+  --color-cyan-600: #0e8ba3;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
@@ -74,37 +74,37 @@ html, body, #root {
 
 .glow-orange {
   box-shadow:
-    0 0 12px rgba(255, 255, 255, 0.04),
-    inset 0 0 1px rgba(255, 255, 255, 0.03);
+    0 0 12px rgba(255, 122, 46, 0.12),
+    inset 0 0 1px rgba(255, 122, 46, 0.08);
 }
 
 .glow-orange-strong {
   box-shadow:
-    0 0 20px rgba(255, 255, 255, 0.06),
-    0 0 6px rgba(255, 255, 255, 0.08),
-    inset 0 0 2px rgba(255, 255, 255, 0.03);
+    0 0 20px rgba(255, 122, 46, 0.18),
+    0 0 6px rgba(255, 122, 46, 0.25),
+    inset 0 0 2px rgba(255, 122, 46, 0.08);
 }
 
 .glow-cyan {
   box-shadow:
-    0 0 12px rgba(255, 255, 255, 0.04),
-    inset 0 0 1px rgba(255, 255, 255, 0.03);
+    0 0 12px rgba(52, 198, 224, 0.12),
+    inset 0 0 1px rgba(52, 198, 224, 0.08);
 }
 
 .glow-cyan-strong {
   box-shadow:
-    0 0 20px rgba(255, 255, 255, 0.06),
-    0 0 6px rgba(255, 255, 255, 0.08);
+    0 0 20px rgba(52, 198, 224, 0.18),
+    0 0 6px rgba(52, 198, 224, 0.25);
 }
 
 .glow-border-orange {
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 122, 46, 0.25);
+  box-shadow: 0 0 10px rgba(255, 122, 46, 0.08);
 }
 
 .glow-border-cyan {
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.03);
+  border-color: rgba(52, 198, 224, 0.25);
+  box-shadow: 0 0 10px rgba(52, 198, 224, 0.08);
 }
 
 /* Machined-edge accent lines with depth */
@@ -136,21 +136,21 @@ html, body, #root {
     2px 0 8px rgba(0, 0, 0, 0.2);
 }
 
-/* White indicator dots — minimal, like the reference amp */
+/* Warm amber indicator dots — like hardware LEDs */
 .led-dot-orange {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+  background: var(--color-rust-400);
+  box-shadow: 0 0 4px rgba(255, 122, 46, 0.5), 0 0 8px rgba(255, 122, 46, 0.2);
 }
 
 .led-dot-cyan {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+  background: var(--color-cyan-400);
+  box-shadow: 0 0 4px rgba(52, 198, 224, 0.5), 0 0 8px rgba(52, 198, 224, 0.2);
 }
 
 /* ── Panel Styling ──────────────────────────────────────────────── */
@@ -158,11 +158,13 @@ html, body, #root {
 .panel {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 20%, rgba(0,0,0,0.02) 100%),
-    var(--color-dust-800);
+    rgba(15, 15, 15, 0.88);
   border: 1px solid var(--color-dust-600);
   border-top-color: rgba(255, 255, 255, 0.10);
   border-bottom-color: rgba(0, 0, 0, 0.3);
   border-radius: 6px;
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -1px 0 rgba(0, 0, 0, 0.25),
@@ -172,11 +174,14 @@ html, body, #root {
 }
 
 .panel-elevated {
-  background: linear-gradient(180deg, #141414 0%, var(--color-dust-800) 4%, var(--color-dust-800) 100%);
+  background:
+    linear-gradient(180deg, rgba(20, 20, 20, 0.95) 0%, rgba(15, 15, 15, 0.92) 4%, rgba(15, 15, 15, 0.88) 100%);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-top-color: rgba(255, 255, 255, 0.12);
   border-bottom-color: rgba(0, 0, 0, 0.4);
   border-radius: 6px;
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.09),
     inset 0 -1px 0 rgba(0, 0, 0, 0.3),
@@ -187,11 +192,14 @@ html, body, #root {
 
 /* Brutalist panel — deeper with machined bevel */
 .panel-brutalist {
-  background: linear-gradient(180deg, #131313 0%, var(--color-dust-800) 3%, #0a0a0a 100%);
+  background:
+    linear-gradient(180deg, rgba(19, 19, 19, 0.95) 0%, rgba(15, 15, 15, 0.9) 3%, rgba(10, 10, 10, 0.88) 100%);
   border: 1px solid var(--color-dust-600);
   border-top-color: rgba(255, 255, 255, 0.08);
   border-bottom-color: rgba(0, 0, 0, 0.4);
   border-radius: 4px;
+  backdrop-filter: blur(12px) saturate(1.15);
+  -webkit-backdrop-filter: blur(12px) saturate(1.15);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     inset 0 -1px 0 rgba(0, 0, 0, 0.4),
@@ -202,17 +210,20 @@ html, body, #root {
 /* Modal overlay glass */
 .modal-backdrop {
   background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
 }
 
 /* Modal container with premium floating shadow */
 .modal-container {
-  background: linear-gradient(180deg, #151515 0%, var(--color-dust-800) 3%, #0a0a0a 100%);
+  background:
+    linear-gradient(180deg, rgba(21, 21, 21, 0.95) 0%, rgba(15, 15, 15, 0.92) 3%, rgba(10, 10, 10, 0.9) 100%);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-top-color: rgba(255, 255, 255, 0.1);
   border-bottom-color: rgba(0, 0, 0, 0.4);
   border-radius: 8px;
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     inset 0 -1px 0 rgba(0, 0, 0, 0.3),
@@ -234,6 +245,28 @@ html, body, #root {
     0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
+/* ── Viewport-Aware Panel Glow ─────────────────────────────────── */
+
+/* Left sidebar — viewport casts warm light on its right edge */
+.panel-viewport-left {
+  box-shadow:
+    inset -1px 0 0 rgba(255, 140, 50, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    4px 0 12px rgba(0, 0, 0, 0.5),
+    8px 0 32px rgba(0, 0, 0, 0.4),
+    inset -20px 0 40px rgba(255, 140, 50, 0.015);
+}
+
+/* Right sidebar — viewport casts warm light on its left edge */
+.panel-viewport-right {
+  box-shadow:
+    inset 1px 0 0 rgba(255, 140, 50, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    -4px 0 12px rgba(0, 0, 0, 0.5),
+    -8px 0 32px rgba(0, 0, 0, 0.4),
+    inset 20px 0 40px rgba(255, 140, 50, 0.015);
+}
+
 /* ── LED Accent Strip — use on panel headers or dividers ───────── */
 
 .led-strip-orange {
@@ -247,7 +280,7 @@ html, body, #root {
   left: 8px;
   right: 8px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 122, 46, 0.15), transparent);
 }
 
 .led-strip-cyan {
@@ -261,7 +294,7 @@ html, body, #root {
   left: 8px;
   right: 8px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  background: linear-gradient(90deg, transparent, rgba(52, 198, 224, 0.12), transparent);
 }
 
 /* Vertical LED strip */
@@ -276,7 +309,7 @@ html, body, #root {
   bottom: 8px;
   right: 0;
   width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  background: linear-gradient(180deg, transparent, rgba(255, 122, 46, 0.12), transparent);
 }
 
 .led-strip-v-cyan {
@@ -290,7 +323,7 @@ html, body, #root {
   bottom: 8px;
   left: 0;
   width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  background: linear-gradient(180deg, transparent, rgba(52, 198, 224, 0.1), transparent);
 }
 
 /* ── Viewport Frame ────────────────────────────────────────────── */
@@ -317,7 +350,9 @@ html, body, #root {
   box-shadow:
     inset 0 2px 8px rgba(0, 0, 0, 0.4),
     inset 0 0 60px rgba(0, 0, 0, 0.3),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.02);
+    inset 0 -1px 0 rgba(255, 255, 255, 0.02),
+    0 0 40px rgba(255, 140, 50, 0.02),
+    0 0 80px rgba(255, 140, 50, 0.01);
   pointer-events: none;
   z-index: 1;
 }
@@ -325,31 +360,46 @@ html, body, #root {
 /* ── Active Tool / Status Indicators ─────────────────────────── */
 
 .tool-active {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.08) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-top-color: rgba(255, 255, 255, 0.06);
-  border-bottom-color: rgba(255, 255, 255, 0.22);
+  background: linear-gradient(180deg, rgba(255, 122, 46, 0.12) 0%, rgba(255, 122, 46, 0.22) 100%);
+  border: 1px solid rgba(255, 122, 46, 0.35);
+  border-top-color: rgba(255, 122, 46, 0.15);
+  border-bottom-color: rgba(255, 122, 46, 0.4);
   box-shadow:
     inset 0 1px 4px rgba(0, 0, 0, 0.35),
-    inset 0 0 8px rgba(255, 255, 255, 0.04),
-    0 1px 0 rgba(255, 255, 255, 0.04);
+    inset 0 0 8px rgba(255, 122, 46, 0.08),
+    0 1px 0 rgba(255, 122, 46, 0.06),
+    0 0 10px rgba(255, 122, 46, 0.12);
 }
 
 .tool-active-cyan {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.06) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-top-color: rgba(255, 255, 255, 0.04);
-  border-bottom-color: rgba(255, 255, 255, 0.15);
+  background: linear-gradient(180deg, rgba(52, 198, 224, 0.10) 0%, rgba(52, 198, 224, 0.18) 100%);
+  border: 1px solid rgba(52, 198, 224, 0.28);
+  border-top-color: rgba(52, 198, 224, 0.12);
+  border-bottom-color: rgba(52, 198, 224, 0.32);
   box-shadow:
     inset 0 1px 3px rgba(0, 0, 0, 0.3),
-    inset 0 0 6px rgba(255, 255, 255, 0.03),
-    0 1px 0 rgba(255, 255, 255, 0.03);
+    inset 0 0 6px rgba(52, 198, 224, 0.05),
+    0 1px 0 rgba(52, 198, 224, 0.03),
+    0 0 8px rgba(52, 198, 224, 0.05);
+}
+
+/* ── Status Badge — warm amber tint ───────────────────────────── */
+
+.status-badge {
+  background: rgba(255, 122, 46, 0.10);
+  border: 1px solid rgba(255, 122, 46, 0.18);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 122, 46, 0.04),
+    0 0 8px rgba(255, 122, 46, 0.03);
 }
 
 /* ── Sidebar Panel ─────────────────────────────────────────────── */
 
 .sidebar-panel {
-  background: linear-gradient(180deg, #131313 0%, #0f0f0f 40%, #0a0a0a 100%);
+  background: linear-gradient(180deg, rgba(24, 24, 24, 0.95) 0%, rgba(18, 18, 18, 0.92) 40%, rgba(12, 12, 12, 0.88) 100%);
+  backdrop-filter: blur(16px) saturate(1.15);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
 }
 
 /* ── Section Header with LED accent ────────────────────────────── */
@@ -361,7 +411,7 @@ html, body, #root {
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
     inset 0 -1px 0 rgba(0, 0, 0, 0.2);
   text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.1),
+    0 1px 0 rgba(255, 200, 150, 0.12),
     0 -1px 0 rgba(0, 0, 0, 0.6);
 }
 
@@ -372,9 +422,9 @@ html, body, #root {
   top: 20%;
   bottom: 20%;
   width: 2px;
-  background: rgba(255, 255, 255, 0.25);
+  background: linear-gradient(180deg, var(--color-rust-400), var(--color-rust-600));
   border-radius: 1px;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 6px rgba(255, 122, 46, 0.3), 0 0 12px rgba(255, 122, 46, 0.1);
 }
 
 /* ── Primary Action Button ─────────────────────────────────────── */
@@ -392,11 +442,13 @@ html, body, #root {
     inset 0 -1px 0 rgba(0, 0, 0, 0.15),
     0 1px 2px rgba(0, 0, 0, 0.5),
     0 2px 6px rgba(0, 0, 0, 0.3);
-  transition: all 0.15s ease;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
 }
 
 .btn-primary:hover {
   background: linear-gradient(180deg, #d4d4d4 0%, #b8b8b8 50%, #a0a0a0 100%);
+  transform: translateY(-0.5px);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
     inset 0 -1px 0 rgba(0, 0, 0, 0.15),
@@ -406,6 +458,7 @@ html, body, #root {
 
 .btn-primary:active {
   background: linear-gradient(180deg, #888888 0%, #999999 100%);
+  transform: translateY(0.5px);
   box-shadow:
     inset 0 1px 3px rgba(0, 0, 0, 0.3),
     inset 0 0 4px rgba(0, 0, 0, 0.15);
@@ -415,26 +468,29 @@ html, body, #root {
   opacity: 0.4;
   cursor: not-allowed;
   box-shadow: none;
+  transform: none;
 }
 
 /* ── Raised Button — extruded 3D feel ─────────────────────────── */
 
 .btn-raised {
-  background: linear-gradient(180deg, #262626 0%, #1e1e1e 50%, #181818 100%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-top-color: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, #3e3e3e 0%, #343434 50%, #2c2c2c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-top-color: rgba(255, 255, 255, 0.16);
   border-bottom-color: rgba(0, 0, 0, 0.3);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.10),
     inset 0 -1px 0 rgba(0, 0, 0, 0.2),
     0 1px 2px rgba(0, 0, 0, 0.4),
     0 2px 6px rgba(0, 0, 0, 0.3);
-  transition: all 0.12s ease;
+  transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
 }
 
 .btn-raised:hover {
-  background: linear-gradient(180deg, #2e2e2e 0%, #242424 50%, #1e1e1e 100%);
-  border-top-color: rgba(255, 255, 255, 0.14);
+  background: linear-gradient(180deg, #4a4a4a 0%, #3e3e3e 50%, #363636 100%);
+  border-top-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-0.5px);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
     inset 0 -1px 0 rgba(0, 0, 0, 0.2),
@@ -443,22 +499,99 @@ html, body, #root {
 }
 
 .btn-raised:active {
-  background: linear-gradient(180deg, #0e0e0e 0%, #0a0a0a 100%);
-  border-top-color: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+  border-top-color: rgba(255, 255, 255, 0.06);
+  transform: translateY(0.5px);
   box-shadow:
     inset 0 1px 3px rgba(0, 0, 0, 0.4),
     inset 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
+/* ── Glass Buttons — warm and cool variants ──────────────────── */
+
+.btn-glass {
+  background: linear-gradient(180deg, rgba(255, 122, 46, 0.18) 0%, rgba(255, 122, 46, 0.25) 100%);
+  border: 1px solid rgba(255, 122, 46, 0.25);
+  border-top-color: rgba(255, 180, 100, 0.2);
+  border-bottom-color: rgba(255, 80, 20, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 180, 100, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(255, 122, 46, 0.06);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+}
+
+.btn-glass:hover {
+  background: linear-gradient(180deg, rgba(255, 122, 46, 0.25) 0%, rgba(255, 122, 46, 0.35) 100%);
+  border-color: rgba(255, 122, 46, 0.35);
+  transform: translateY(-0.5px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 180, 100, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.35),
+    0 0 16px rgba(255, 122, 46, 0.1);
+}
+
+.btn-glass:active {
+  transform: translateY(0.5px);
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.3),
+    inset 0 0 4px rgba(255, 122, 46, 0.1);
+}
+
+.btn-glass-cyan {
+  background: linear-gradient(180deg, rgba(52, 198, 224, 0.16) 0%, rgba(52, 198, 224, 0.22) 100%);
+  border: 1px solid rgba(52, 198, 224, 0.25);
+  border-top-color: rgba(126, 232, 248, 0.18);
+  border-bottom-color: rgba(14, 139, 163, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow:
+    inset 0 1px 0 rgba(126, 232, 248, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(52, 198, 224, 0.05);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+}
+
+.btn-glass-cyan:hover {
+  background: linear-gradient(180deg, rgba(52, 198, 224, 0.22) 0%, rgba(52, 198, 224, 0.32) 100%);
+  border-color: rgba(52, 198, 224, 0.35);
+  transform: translateY(-0.5px);
+  box-shadow:
+    inset 0 1px 0 rgba(126, 232, 248, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.35),
+    0 0 16px rgba(52, 198, 224, 0.08);
+}
+
+.btn-glass-cyan:active {
+  transform: translateY(0.5px);
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.3),
+    inset 0 0 4px rgba(52, 198, 224, 0.08);
+}
+
 /* ── Toolbar Button Group ──────────────────────────────────────── */
 
 .toolbar-group {
-  background: rgba(12, 12, 12, 0.7);
+  background: rgba(20, 20, 20, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-top-color: rgba(0, 0, 0, 0.5);
   border-bottom-color: rgba(255, 255, 255, 0.04);
   border-radius: 6px;
   padding: 2px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   box-shadow:
     inset 0 2px 4px rgba(0, 0, 0, 0.6),
     inset 0 0 8px rgba(0, 0, 0, 0.25),
@@ -471,32 +604,32 @@ html, body, #root {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+  background: var(--color-rust-400);
+  box-shadow: 0 0 4px rgba(255, 122, 46, 0.5), 0 0 8px rgba(255, 122, 46, 0.2);
 }
 
 .status-dot-cyan {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+  background: var(--color-cyan-400);
+  box-shadow: 0 0 4px rgba(52, 198, 224, 0.5), 0 0 8px rgba(52, 198, 224, 0.2);
 }
 
 /* ── Scrollbar ──────────────────────────────────────────────────── */
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-dust-500);
-  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-dust-400);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 /* ── Input Styling ──────────────────────────────────────────────── */
@@ -505,8 +638,12 @@ input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
-  cursor: pointer;
+  cursor: grab;
   height: 4px;
+}
+
+input[type="range"]:active {
+  cursor: grabbing;
 }
 
 input[type="range"]::-webkit-slider-track {
@@ -524,7 +661,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #585858 0%, #404040 35%, #303030 65%, #242424 100%);
+  background: radial-gradient(circle at 35% 35%, #707070 0%, #484848 40%, #303030 70%, #242424 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-top-color: rgba(255, 255, 255, 0.18);
   border-bottom-color: rgba(0, 0, 0, 0.3);
@@ -540,7 +677,8 @@ input[type="range"]:focus::-webkit-slider-thumb {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset -1px -1px 2px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(255, 122, 46, 0.2),
+    0 0 6px rgba(255, 122, 46, 0.15),
     0 1px 3px rgba(0, 0, 0, 0.5),
     0 2px 6px rgba(0, 0, 0, 0.3);
 }
@@ -558,7 +696,7 @@ input[type="range"]::-moz-range-thumb {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #585858 0%, #404040 35%, #303030 65%, #242424 100%);
+  background: radial-gradient(circle at 35% 35%, #707070 0%, #484848 40%, #303030 70%, #242424 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-top-color: rgba(255, 255, 255, 0.18);
   border-bottom-color: rgba(0, 0, 0, 0.3);
@@ -575,7 +713,7 @@ input[type="text"],
 input[type="number"],
 input[type="search"],
 select {
-  background: linear-gradient(180deg, #080808 0%, var(--color-dust-900) 100%);
+  background: linear-gradient(180deg, #0e0e0e 0%, #0a0a0a 100%);
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-top-color: rgba(0, 0, 0, 0.5);
   border-bottom-color: rgba(255, 255, 255, 0.04);
@@ -586,18 +724,19 @@ select {
     inset 0 2px 4px rgba(0, 0, 0, 0.5),
     inset 0 0 8px rgba(0, 0, 0, 0.2),
     0 1px 0 rgba(255, 255, 255, 0.04);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
 select:focus {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 122, 46, 0.25);
   box-shadow:
     inset 0 2px 4px rgba(0, 0, 0, 0.5),
     inset 0 0 8px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(255, 122, 46, 0.12),
+    0 0 8px rgba(255, 122, 46, 0.06),
     0 1px 0 rgba(255, 255, 255, 0.04);
   outline: none;
 }
@@ -605,14 +744,14 @@ select:focus {
 /* ── Checkbox accent ────────────────────────────────────────────── */
 
 input[type="checkbox"] {
-  accent-color: #b0b0b0;
+  accent-color: var(--color-rust-500);
   cursor: pointer;
 }
 
 /* ── Selection ──────────────────────────────────────────────────── */
 
 ::selection {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 122, 46, 0.2);
   color: #fff;
 }
 
@@ -625,7 +764,7 @@ input[type="checkbox"] {
 /* ── Transitions ────────────────────────────────────────────────── */
 
 button, input, select {
-  transition: all 0.15s ease;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ── Instrument-Panel Text ──────────────────────────────────── */
@@ -633,7 +772,7 @@ button, input, select {
 /* Engraved label appearance — dual-shadow deboss on anodized surface */
 .label-engraved {
   text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.1),
+    0 1px 0 rgba(255, 200, 150, 0.12),
     0 -1px 0 rgba(0, 0, 0, 0.6);
   -webkit-font-smoothing: antialiased;
 }
@@ -641,10 +780,64 @@ button, input, select {
 /* Deep deboss — for modal/dialog titles (larger text = deeper groove) */
 .label-debossed-deep {
   text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.15),
+    0 1px 0 rgba(255, 200, 150, 0.15),
     0 -1px 1px rgba(0, 0, 0, 0.7),
     0 0 3px rgba(0, 0, 0, 0.2);
   -webkit-font-smoothing: antialiased;
+}
+
+/* ── Template Card — Welcome screen cards ────────────────────── */
+
+.template-card {
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 3px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+}
+
+.template-card:hover {
+  border-color: rgba(255, 122, 46, 0.3);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 6px 16px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 122, 46, 0.06);
+}
+
+.template-card:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 0 6px rgba(0, 0, 0, 0.15),
+    0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Dropdown Menu — animated entry ──────────────────────────── */
+
+@keyframes dropdown-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-menu {
+  animation: dropdown-enter 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top left;
 }
 
 /* ── Anodized Aluminum Grain Overlay ──────────────────────────── */
@@ -656,9 +849,9 @@ button, input, select {
   pointer-events: none;
   z-index: 10000;
   background:
-    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.007) 2px, rgba(255,255,255,0.007) 3px),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,240,220,0.007) 2px, rgba(255,240,220,0.007) 3px),
     repeating-linear-gradient(97deg, transparent, transparent 3px, rgba(0,0,0,0.009) 3px, rgba(0,0,0,0.009) 4px),
-    repeating-linear-gradient(63deg, transparent, transparent 2px, rgba(255,255,255,0.004) 2px, rgba(255,255,255,0.004) 3px);
+    repeating-linear-gradient(63deg, transparent, transparent 2px, rgba(255,240,220,0.004) 2px, rgba(255,240,220,0.004) 3px);
   mix-blend-mode: overlay;
 }
 

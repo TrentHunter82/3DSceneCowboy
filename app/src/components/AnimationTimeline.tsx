@@ -317,8 +317,7 @@ export function AnimationTimeline() {
           onClick={handleCaptureKeyframe}
           aria-label="Capture scene keyframe"
           title="Capture camera + selected objects at current time"
-          className="px-2 py-0.5 rounded text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/30 hover:border-cyan-500/50"
-          style={{ boxShadow: '0 0 6px rgba(255,255,255,0.06)' }}
+          className="px-2 py-0.5 rounded text-xs font-medium btn-glass-cyan text-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
         >
           Capture Keyframe
         </button>
@@ -329,9 +328,9 @@ export function AnimationTimeline() {
           disabled={!canAddTrack}
           aria-label="Add animation track for selected object"
           title={!selectedId ? 'Select an object first' : selectedHasTrack ? 'Selected object already has a track' : 'Add animation track for selected object'}
-          className={`px-2 py-0.5 rounded text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500 ${
+          className={`px-2 py-0.5 rounded text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500 ${
             canAddTrack
-              ? 'bg-rust-500/20 text-rust-300 border border-rust-500/30 hover:bg-rust-500/30 hover:border-rust-500/50'
+              ? 'btn-glass text-rust-300'
               : 'bg-dust-700/50 text-dust-500 cursor-default'
           }`}
         >

@@ -136,7 +136,7 @@ export function WelcomeScreen() {
   return (
     <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
       <div
-        className="pointer-events-auto max-w-2xl w-full mx-4 bg-dust-900/95 backdrop-blur-sm border border-rust-500/20 rounded-xl overflow-hidden relative"
+        className="pointer-events-auto max-w-2xl w-full mx-4 bg-dust-900/95 backdrop-blur-xl border border-rust-500/20 rounded-xl overflow-hidden relative"
         style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.6), 0 12px 40px rgba(0,0,0,0.7), 0 24px 80px rgba(0,0,0,0.5)' }}
         role="region"
         aria-label="Welcome screen"
@@ -183,10 +183,7 @@ export function WelcomeScreen() {
                 <button
                   key={template.id}
                   onClick={() => handleTemplate(template.action)}
-                  className="group flex flex-col items-center gap-2 p-4 bg-dust-800/80 border border-dust-600/30 rounded-lg hover:border-rust-500/40 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500"
-                  style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.4), 0 3px 8px rgba(0,0,0,0.3)' }}
-                  onMouseEnter={e => (e.currentTarget.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.2), 0 2px 6px rgba(0,0,0,0.5), 0 6px 16px rgba(0,0,0,0.4)')}
-                  onMouseLeave={e => (e.currentTarget.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.4), 0 3px 8px rgba(0,0,0,0.3)')}
+                  className="group template-card flex flex-col items-center gap-2 p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500"
                   aria-label={`Create ${template.name}: ${template.description}`}
                 >
                   <span

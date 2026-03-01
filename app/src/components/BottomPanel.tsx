@@ -71,7 +71,7 @@ export function BottomPanel() {
         aria-label={collapsed ? 'Expand timeline' : 'Collapse timeline'}
         aria-expanded={!collapsed}
       >
-        <span className="px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] font-semibold text-sand-100 flex items-center gap-1.5 label-engraved">
+        <span className="px-4 py-2 text-[11px] uppercase tracking-[0.12em] font-semibold text-sand-100 flex items-center gap-1.5 label-engraved">
           <span className="text-[10px]" aria-hidden="true">{collapsed ? '\u25B6' : '\u25BC'}</span>
           Animation Timeline
         </span>

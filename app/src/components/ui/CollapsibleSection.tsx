@@ -49,7 +49,7 @@ export function CollapsibleSection({
         {!isTertiary && (
           <span
             className={`${config.dotSize} rounded-full shrink-0 transition-all duration-200 ${
-              isOpen ? 'bg-white shadow-[0_0_2px_rgba(255,255,255,0.3)]' : 'bg-dust-500/40'
+              isOpen ? 'bg-rust-400 shadow-[0_0_4px_rgba(255,122,46,0.5),0_0_8px_rgba(255,122,46,0.2)]' : 'bg-dust-500/40'
             }`}
           />
         )}
@@ -73,7 +73,7 @@ export function CollapsibleSection({
           isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-3 pb-3">
+        <div className="px-4 pt-2 pb-3">
           {children}
         </div>
       </div>

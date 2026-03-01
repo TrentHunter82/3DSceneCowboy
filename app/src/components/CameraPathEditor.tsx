@@ -269,9 +269,9 @@ export function CameraPathEditor() {
   }, [activePathId, addPoint])
 
   return (
-    <div className="w-64 bg-dust-800 border-l border-dust-600/25" role="region" aria-label="Camera path editor">
+    <div className="w-64" role="region" aria-label="Camera path editor">
       {/* Header */}
-      <div className="flex items-center justify-between px-3 py-2 border-b border-dust-600/25">
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-dust-600/25">
         <span className="text-xs font-bold text-dust-100 uppercase tracking-wider">
           Camera Paths
         </span>
@@ -289,12 +289,12 @@ export function CameraPathEditor() {
 
       <div className="overflow-y-auto max-h-[calc(100vh-12rem)]">
         {/* Path List */}
-        <div className="px-3 py-2 border-b border-dust-600/25">
+        <div className="px-4 py-2.5 border-b border-dust-600/25">
           <div className="space-y-1 mb-2">
             {paths.map(path => (
               <div
                 key={path.id}
-                className={`flex items-center gap-1.5 px-2 py-1 rounded cursor-pointer text-xs transition-colors ${
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded cursor-pointer text-xs transition-colors ${
                   activePathId === path.id
                     ? 'bg-rust-900/40 text-sand-100'
                     : 'text-dust-300 hover:bg-dust-700/50'
@@ -318,7 +318,7 @@ export function CameraPathEditor() {
           </div>
           <button
             onClick={handleAddPath}
-            className="w-full px-2 py-1 bg-dust-700 hover:bg-dust-600 text-xs text-sand-200 rounded transition-colors"
+            className="w-full px-3 py-1.5 btn-raised text-xs text-sand-200 rounded transition-colors"
             aria-label="Add camera path"
           >
             + Add Camera Path
@@ -381,7 +381,7 @@ export function CameraPathEditor() {
                   <button
                     onClick={play}
                     disabled={activePath.points.length < 2}
-                    className="flex-1 px-2 py-1 bg-green-800 hover:bg-green-700 disabled:opacity-40 disabled:cursor-not-allowed text-green-200 text-xs rounded transition-colors"
+                    className="flex-1 px-3 py-1.5 bg-rust-600 hover:bg-rust-500 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs rounded transition-colors"
                     aria-label="Play camera path"
                   >
                     ▶ Play
@@ -389,7 +389,7 @@ export function CameraPathEditor() {
                 ) : (
                   <button
                     onClick={pause}
-                    className="flex-1 px-2 py-1 bg-yellow-800 hover:bg-yellow-700 text-yellow-200 text-xs rounded transition-colors"
+                    className="flex-1 px-3 py-1.5 bg-rust-500 hover:bg-rust-400 text-white text-xs rounded transition-colors"
                     aria-label="Pause camera path"
                   >
                     ⏸ Pause
@@ -398,7 +398,7 @@ export function CameraPathEditor() {
                 <button
                   onClick={stop}
                   disabled={playbackState === 'stopped'}
-                  className="px-2 py-1 bg-dust-700 hover:bg-dust-600 disabled:opacity-40 disabled:cursor-not-allowed text-dust-300 text-xs rounded transition-colors"
+                  className="px-3 py-1.5 bg-dust-700 hover:bg-dust-600 disabled:opacity-40 disabled:cursor-not-allowed text-dust-300 text-xs rounded transition-colors"
                   aria-label="Stop camera path"
                 >
                   ■ Stop
@@ -424,7 +424,7 @@ export function CameraPathEditor() {
                 {activePath.points.map((pt, idx) => (
                   <div
                     key={pt.id}
-                    className={`flex items-center gap-1 px-2 py-1 rounded cursor-pointer text-xs transition-colors ${
+                    className={`flex items-center gap-1 px-2.5 py-1.5 rounded cursor-pointer text-xs transition-colors ${
                       selectedPointId === pt.id
                         ? 'bg-rust-900/40 text-sand-100'
                         : 'text-dust-300 hover:bg-dust-700/50'
@@ -450,7 +450,7 @@ export function CameraPathEditor() {
               </div>
               <button
                 onClick={handleAddPoint}
-                className="w-full px-2 py-1 bg-dust-700 hover:bg-dust-600 text-xs text-sand-200 rounded transition-colors"
+                className="w-full px-3 py-1.5 btn-raised text-xs text-sand-200 rounded transition-colors"
                 aria-label="Add control point"
               >
                 + Add Point
@@ -492,7 +492,7 @@ export function CameraPathEditor() {
         )}
 
         {/* Footer */}
-        <div className="px-3 py-2 border-t border-dust-600/25 flex justify-between items-center">
+        <div className="px-4 py-2 border-t border-dust-600/25 flex justify-between items-center">
           <span className="text-[10px] text-dust-500">
             {paths.length} path{paths.length !== 1 ? 's' : ''}
           </span>

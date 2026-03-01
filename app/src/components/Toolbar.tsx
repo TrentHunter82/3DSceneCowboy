@@ -44,7 +44,7 @@ const PRIMITIVES: { type: ObjectType; label: string; icon: string }[] = [
 const btnBase = 'w-7 h-7 flex items-center justify-center rounded text-xs transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500/50'
 const btnDefault = `${btnBase} btn-raised text-dust-300 hover:text-sand-100`
 const btnDisabled = `${btnBase} btn-raised text-dust-300 disabled:opacity-20 disabled:cursor-not-allowed hover:text-sand-100`
-const divider = 'w-px h-5 bg-dust-500/30 mx-2'
+const divider = 'w-px h-5 bg-dust-400/25 mx-1.5'
 
 export function Toolbar() {
   const toolMode = useSceneStore(s => s.toolMode)
@@ -181,7 +181,7 @@ export function Toolbar() {
   [goToPreset])
 
   return (
-    <div className="h-11 bg-dust-900 flex items-center px-3 gap-0.5 shrink-0" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.5)' }}>
+    <div className="h-11 bg-dust-900 flex items-center px-4 gap-1 shrink-0" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.5)' }}>
       {/* App logo — clickable to reopen welcome screen */}
       <div className="flex items-center gap-2 mr-3 select-none">
         <button
@@ -203,7 +203,7 @@ export function Toolbar() {
         onChange={e => setSceneName(e.target.value)}
         aria-label="Scene name"
         maxLength={64}
-        className="bg-transparent border border-transparent hover:border-dust-600/20 focus:border-rust-500/40 rounded px-2 py-0.5 text-[12px] text-sand-200 font-medium tracking-wide w-36 focus:outline-none transition-all"
+        className="bg-transparent border border-transparent hover:border-dust-600/20 focus:border-rust-500/40 rounded px-2.5 py-0.5 text-[12px] text-sand-200 font-medium tracking-wide w-36 focus:outline-none transition-all"
         title="Scene name (used as save filename)"
       />
 
@@ -385,7 +385,7 @@ export function Toolbar() {
 
       {/* Spacer + tool info badge */}
       <div className="flex-1" />
-      <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-dust-800/60 border border-dust-600/20">
+      <div className="flex items-center gap-2 px-2.5 py-1 status-badge">
         <div className="led-dot-orange" />
         <span className="text-dust-300 text-[9px] uppercase tracking-[0.12em] select-none font-semibold">
           {toolMode}

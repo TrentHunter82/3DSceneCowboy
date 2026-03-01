@@ -96,7 +96,7 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
       role="menu"
       aria-label="Context menu"
       tabIndex={-1}
-      className="min-w-[160px] bg-dust-800 border border-dust-600/60 rounded-lg py-1 focus:outline-none"
+      className="min-w-[160px] bg-dust-800 border border-dust-600/60 rounded-lg py-1 focus:outline-none dropdown-menu"
     >
       {items.map((item, i) => {
         if (item.separator) {

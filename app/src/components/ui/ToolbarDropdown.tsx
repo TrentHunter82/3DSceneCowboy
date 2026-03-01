@@ -148,7 +148,7 @@ export function ToolbarDropdown({ trigger, triggerIcon, items, columns = 1, aria
           role="menu"
           aria-label={ariaLabel}
           onKeyDown={handleMenuKeyDown}
-          className={`absolute top-full left-0 mt-1 z-40 bg-dust-800 border border-dust-600/50 rounded py-1 min-w-[160px] ${
+          className={`absolute top-full left-0 mt-1 z-40 bg-dust-800 border border-dust-600/50 rounded py-1 min-w-[160px] dropdown-menu ${
             isGrid ? 'p-2' : ''
           }`}
           style={{
