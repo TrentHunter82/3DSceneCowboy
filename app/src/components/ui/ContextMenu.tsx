@@ -92,7 +92,7 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
   return (
     <div
       ref={menuRef}
-      style={{ ...style, boxShadow: '0 8px 32px rgba(0,0,0,0.6), 0 0 1px rgba(255,102,0,0.08), inset 0 1px 0 rgba(255,255,255,0.03)' }}
+      style={{ ...style, boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.6), 0 16px 48px rgba(0,0,0,0.4)', borderTopColor: 'rgba(255,255,255,0.08)' }}
       role="menu"
       aria-label="Context menu"
       tabIndex={-1}

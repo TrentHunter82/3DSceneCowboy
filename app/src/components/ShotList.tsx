@@ -51,9 +51,9 @@ export function ShotList() {
         {/* Capture button */}
         <button
           onClick={handleCapture}
-          className="w-full px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] bg-rust-500/20 border border-rust-500/30 rounded hover:bg-rust-500/30 hover:border-rust-500/50 text-rust-400 transition-all duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rust-500/60"
+          className="w-full px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] bg-rust-500/20 border border-rust-500/30 rounded hover:bg-rust-500/30 hover:border-rust-500/50 text-rust-400 transition-all duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rust-500/60"
           title="Save current camera position as a new shot (Ctrl+Shift+S)"
-          style={{ boxShadow: '0 0 8px rgba(255,102,0,0.1)' }}
+          style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 3px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3)' }}
         >
           + Capture Current View
         </button>

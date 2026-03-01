@@ -85,7 +85,7 @@ export function EffectsPanel() {
   return (
     <div className="w-60 bg-dust-800 border-l border-dust-600/25 flex flex-col shrink-0">
       <div className="px-3 py-2 border-b border-dust-600/25">
-        <h2 className="text-xs font-bold text-dust-100 uppercase tracking-wider">
+        <h2 className="text-[11px] font-semibold text-dust-100 uppercase tracking-[0.12em] label-engraved">
           Effects
         </h2>
       </div>

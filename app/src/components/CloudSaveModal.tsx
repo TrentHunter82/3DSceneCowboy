@@ -167,11 +167,11 @@ export function CloudSaveModal({ isOpen, onClose }: CloudSaveModalProps) {
         aria-modal="true"
         aria-label="Scene Storage"
         className="relative w-full max-w-lg mx-4 bg-dust-800 border border-dust-600/40 rounded-lg"
-        style={{ boxShadow: '0 24px 80px rgba(0,0,0,0.8), 0 0 1px rgba(255,102,0,0.2), inset 0 1px 0 rgba(255,255,255,0.04)' }}
+        style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.6), 0 12px 40px rgba(0,0,0,0.7), 0 24px 80px rgba(0,0,0,0.5)' }}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-dust-700/50">
-          <h2 className="text-[14px] font-semibold text-sand-100 flex items-center gap-2 tracking-wide">
+          <h2 className="text-[15px] font-semibold text-sand-100 flex items-center gap-2 tracking-wide label-debossed-deep">
             <span className="text-rust-400" aria-hidden="true">&#x2601;</span>
             Scene Storage
           </h2>
@@ -269,7 +269,7 @@ export function CloudSaveModal({ isOpen, onClose }: CloudSaveModalProps) {
               onClick={handleSave}
               disabled={objects.length === 0}
               className="w-full px-3 py-2 text-[12px] font-semibold text-white bg-rust-500/90 rounded hover:bg-rust-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rust-500/60"
-              style={{ boxShadow: '0 0 12px rgba(255,102,0,0.15)' }}
+              style={{ boxShadow: '0 0 8px rgba(255,255,255,0.04)' }}
             >
               Save to Cloud
             </button>

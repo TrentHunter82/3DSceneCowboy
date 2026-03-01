@@ -49,7 +49,7 @@ export function CollapsibleSection({
         {!isTertiary && (
           <span
             className={`${config.dotSize} rounded-full shrink-0 transition-all duration-200 ${
-              isOpen ? 'bg-rust-500 shadow-[0_0_8px_rgba(255,102,0,0.7)]' : 'bg-dust-500/40'
+              isOpen ? 'bg-white shadow-[0_0_2px_rgba(255,255,255,0.3)]' : 'bg-dust-500/40'
             }`}
           />
         )}
@@ -60,7 +60,7 @@ export function CollapsibleSection({
         >
           {'\u25B6'}
         </span>
-        <span className={`${config.textSize} font-semibold uppercase tracking-[0.1em] transition-colors ${
+        <span className={`${config.textSize} font-semibold uppercase tracking-[0.12em] label-engraved transition-colors ${
           isOpen
             ? isTertiary ? 'text-dust-300' : 'text-dust-100'
             : isTertiary ? 'text-dust-500' : 'text-dust-400'

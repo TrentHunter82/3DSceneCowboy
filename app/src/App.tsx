@@ -53,7 +53,7 @@ function App() {
       {/* Top bar */}
       <header
         className="flex items-stretch shrink-0 border-b border-dust-600/30 led-strip-orange relative z-10"
-        style={{ boxShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
+        style={{ boxShadow: '0 1px 0 rgba(255,255,255,0.04), 0 2px 8px rgba(0,0,0,0.6), 0 6px 24px rgba(0,0,0,0.4)' }}
       >
         <div className="flex-1 min-w-0">
           <Toolbar />
@@ -67,7 +67,7 @@ function App() {
           <aside
             aria-label="Scene sidebar"
             className="w-56 sidebar-panel border-r border-dust-600/20 flex flex-col shrink-0 led-strip-v-orange"
-            style={{ boxShadow: 'inset -1px 0 0 rgba(255,102,0,0.08), 6px 0 24px rgba(0,0,0,0.6)' }}
+            style={{ boxShadow: 'inset -1px 0 0 rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.04), 4px 0 12px rgba(0,0,0,0.5), 8px 0 32px rgba(0,0,0,0.4)' }}
           >
             <div className="flex-1 min-h-0 flex flex-col overflow-y-auto">
               <ObjectList />
@@ -95,7 +95,7 @@ function App() {
             className="absolute top-2 left-2 z-10 w-8 h-8 bg-dust-800 border border-dust-600/40 rounded flex items-center justify-center text-dust-400 hover:border-rust-500/40 hover:text-rust-400 transition-all duration-150"
             title="Show sidebars"
             aria-label="Show sidebars"
-            style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.6), 0 0 8px rgba(255,102,0,0.15)' }}
+            style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.7), 0 0 1px rgba(255,255,255,0.06)' }}
           >
             ☰
           </button>

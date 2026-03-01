@@ -198,7 +198,7 @@ export function PropertiesPanel() {
     return (
       <div className="w-60 flex flex-col shrink-0">
         <div className="px-3 py-3 border-b border-dust-600/25 section-header">
-          <h2 className="text-[11px] font-bold text-dust-100 uppercase tracking-[0.1em]">
+          <h2 className="text-[11px] font-semibold text-dust-100 uppercase tracking-[0.12em] label-engraved">
             Properties
           </h2>
         </div>
@@ -223,7 +223,7 @@ export function PropertiesPanel() {
   return (
     <div className="w-60 flex flex-col shrink-0">
       <div className="px-3 py-3 border-b border-dust-600/25 section-header">
-        <h2 className="text-[11px] font-bold text-dust-100 uppercase tracking-[0.1em]">
+        <h2 className="text-[11px] font-semibold text-dust-100 uppercase tracking-[0.12em] label-engraved">
           Properties
         </h2>
       </div>

@@ -28,7 +28,7 @@ function resetStores() {
     lastSavedAt: null,
   })
   useUIStore.setState({
-    showWelcome: false,
+    showWelcome: true,
     rightSidebarTab: 'object',
     bottomPanelTab: 'timeline',
     bottomPanelHeight: 240,
@@ -63,9 +63,9 @@ describe('WelcomeScreen', () => {
     expect(screen.getByRole('region', { name: 'Welcome screen' })).toBeInTheDocument()
   })
 
-  // 2. Returns null when objects exist
-  it('does NOT render when objects exist', () => {
-    useSceneStore.getState().addObject('box')
+  // 2. Returns null when dismissed
+  it('does NOT render when showWelcome is false', () => {
+    useUIStore.setState({ showWelcome: false })
     const { container } = render(<WelcomeScreen />)
     expect(container.innerHTML).toBe('')
   })

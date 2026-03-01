@@ -42,7 +42,7 @@ export const useUIStore = create<UIState>((set) => ({
   pivotMode: 'individual',
   theme: 'dark',
   rightSidebarTab: 'object',
-  showWelcome: false,
+  showWelcome: true,
   bottomPanelTab: 'timeline',
   bottomPanelHeight: 240,
   bottomPanelCollapsed: true,

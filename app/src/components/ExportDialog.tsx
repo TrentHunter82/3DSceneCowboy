@@ -113,11 +113,11 @@ export function ExportDialog({ isOpen, onClose }: ExportDialogProps) {
         aria-modal="true"
         aria-label="Export Scene"
         className="relative w-full max-w-lg mx-4 bg-dust-800 border border-dust-600 rounded-lg flex flex-col max-h-[90vh]"
-        style={{ boxShadow: '0 24px 80px rgba(0,0,0,0.8), 0 0 1px rgba(255,102,0,0.2), inset 0 1px 0 rgba(255,255,255,0.04)' }}
+        style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.6), 0 12px 40px rgba(0,0,0,0.7), 0 24px 80px rgba(0,0,0,0.5)' }}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-dust-600/30 shrink-0">
-          <h2 className="text-lg font-semibold text-sand-200">
+          <h2 className="text-[15px] font-semibold text-sand-200 tracking-wide label-debossed-deep">
             Export Scene
           </h2>
           <button
@@ -521,7 +521,7 @@ export function ExportDialog({ isOpen, onClose }: ExportDialogProps) {
                 ? 'bg-rust-500/50 cursor-not-allowed'
                 : 'bg-rust-500 hover:bg-rust-600'
             }`}
-            style={{ boxShadow: '0 0 12px rgba(255,102,0,0.2)' }}
+            style={{ boxShadow: '0 0 8px rgba(255,255,255,0.04)' }}
             aria-label="Start export"
           >
             Export

@@ -42,8 +42,8 @@ const PRIMITIVES: { type: ObjectType; label: string; icon: string }[] = [
 
 // Reusable button classes — refined for industrial aesthetic
 const btnBase = 'w-7 h-7 flex items-center justify-center rounded text-xs transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500/50'
-const btnDefault = `${btnBase} text-dust-300 hover:bg-dust-600/40 hover:text-sand-100`
-const btnDisabled = `${btnBase} text-dust-300 disabled:opacity-20 disabled:cursor-not-allowed hover:bg-dust-600/40 hover:text-sand-100`
+const btnDefault = `${btnBase} btn-raised text-dust-300 hover:text-sand-100`
+const btnDisabled = `${btnBase} btn-raised text-dust-300 disabled:opacity-20 disabled:cursor-not-allowed hover:text-sand-100`
 const divider = 'w-px h-5 bg-dust-500/30 mx-2'
 
 export function Toolbar() {
@@ -181,19 +181,19 @@ export function Toolbar() {
   [goToPreset])
 
   return (
-    <div className="h-11 bg-dust-900 flex items-center px-3 gap-0.5 shrink-0" style={{ boxShadow: 'inset 0 -1px 0 rgba(255,102,0,0.1)' }}>
+    <div className="h-11 bg-dust-900 flex items-center px-3 gap-0.5 shrink-0" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.5)' }}>
       {/* App logo — clickable to reopen welcome screen */}
       <div className="flex items-center gap-2 mr-3 select-none">
         <button
           onClick={handleShowWelcome}
           className="w-7 h-7 rounded-md flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500/50"
-          style={{ boxShadow: '0 0 20px rgba(255,102,0,0.5), 0 0 6px rgba(255,102,0,0.8), inset 0 1px 0 rgba(255,255,255,0.2)', background: 'linear-gradient(135deg, #ff8844, #ff6600)' }}
+          style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08), 0 1px 4px rgba(0,0,0,0.5)', background: 'linear-gradient(135deg, #333333, #222222)', border: '1px solid rgba(255,255,255,0.1)' }}
           aria-label="Show welcome screen"
           title="Welcome screen"
         >
           <span className="text-[10px] font-black text-white leading-none tracking-wider">3D</span>
         </button>
-        <span className="text-[10px] font-semibold text-dust-400 tracking-[0.1em] uppercase hidden lg:inline">Scene</span>
+        <span className="text-[10px] font-semibold text-dust-400 tracking-[0.12em] uppercase hidden lg:inline label-engraved">Scene</span>
       </div>
 
       {/* Editable scene name */}
@@ -395,7 +395,7 @@ export function Toolbar() {
       {/* Reset confirmation dialog */}
       {showResetConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm">
-          <div className="bg-dust-800 border border-rust-500/20 rounded-lg p-5 max-w-sm" style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255,102,0,0.08), inset 0 1px 0 rgba(255,255,255,0.04)' }}>
+          <div className="bg-dust-800 border border-rust-500/20 rounded-lg p-5 max-w-sm" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.6), 0 16px 48px rgba(0,0,0,0.4)' }}>
             <h3 className="text-sand-100 text-[13px] font-semibold mb-2 tracking-wide">Clear Scene?</h3>
             <p className="text-dust-300 text-[11px] mb-5 leading-relaxed">
               This will remove all {objects.length} object{objects.length !== 1 ? 's' : ''} from the scene. This action cannot be undone.

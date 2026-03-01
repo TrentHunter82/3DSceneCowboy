@@ -391,10 +391,10 @@ export function ObjectList() {
     let rowStyle: React.CSSProperties | undefined
     if (isPrimary) {
       rowClasses = 'bg-rust-500/12 text-sand-50 border-l-2 border-rust-500'
-      rowStyle = { boxShadow: 'inset 0 0 30px rgba(255,102,0,0.1), inset 3px 0 12px rgba(255,102,0,0.12)' }
+      rowStyle = { boxShadow: 'inset 0 0 30px rgba(255,255,255,0.03), inset 3px 0 12px rgba(255,255,255,0.04)' }
     } else if (isSelected) {
       rowClasses = 'bg-dust-600/25 text-sand-200 border-l-2 border-rust-400/60'
-      rowStyle = { boxShadow: 'inset 2px 0 8px rgba(255,102,0,0.06)' }
+      rowStyle = { boxShadow: 'inset 2px 0 8px rgba(255,255,255,0.02)' }
     } else {
       rowClasses = 'text-dust-300 hover:bg-dust-600/15 hover:border-rust-500/20 border-l-2 border-transparent'
       rowStyle = undefined
@@ -508,7 +508,7 @@ export function ObjectList() {
   return (
     <div className="flex-1 min-h-0 flex flex-col">
       <div className="px-3 py-3 border-b border-dust-600/25 section-header">
-        <h2 className="text-[11px] font-bold text-dust-100 uppercase tracking-[0.12em]">
+        <h2 className="text-[11px] font-semibold text-dust-100 uppercase tracking-[0.12em] label-engraved">
           Scene
         </h2>
       </div>

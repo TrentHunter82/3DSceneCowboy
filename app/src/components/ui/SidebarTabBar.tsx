@@ -72,7 +72,10 @@ export function SidebarTabBar({ tabs, activeTab, onTabChange }: SidebarTabBarPro
             style={{
               width: 36,
               height: 36,
-              ...(isActive ? { boxShadow: '0 0 12px rgba(0,212,255,0.3)' } : {}),
+              ...(isActive ? {
+                boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.4), inset 0 0 6px rgba(0,0,0,0.2), 0 0 4px rgba(255,255,255,0.04)',
+                background: 'linear-gradient(180deg, rgba(168,168,184,0.05) 0%, rgba(168,168,184,0.12) 100%)'
+              } : {}),
             }}
           >
             {tab.icon}

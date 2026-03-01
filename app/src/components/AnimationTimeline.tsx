@@ -248,7 +248,7 @@ export function AnimationTimeline() {
               ? 'bg-rust-500 text-white'
               : 'bg-dust-700 text-sand-200 hover:bg-dust-600'
           }`}
-          style={isPlaying ? { boxShadow: '0 0 12px rgba(255,102,0,0.3)' } : undefined}
+          style={isPlaying ? { boxShadow: '0 0 8px rgba(255,255,255,0.08)' } : undefined}
         >
           {isPlaying ? '⏸' : '▶'}
         </button>
@@ -257,7 +257,7 @@ export function AnimationTimeline() {
         <button
           onClick={stop}
           aria-label="Stop animation"
-          className="px-2 py-0.5 rounded text-xs font-medium bg-dust-700 text-sand-200 hover:bg-dust-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500"
+          className="px-2 py-0.5 rounded text-[10px] font-semibold tracking-[0.06em] btn-raised text-sand-200 hover:text-sand-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500"
         >
           ⏹
         </button>
@@ -271,7 +271,7 @@ export function AnimationTimeline() {
         <button
           onClick={handleCycleSpeed}
           aria-label={`Playback speed ${playbackSpeed}x, click to change`}
-          className="px-2 py-0.5 rounded text-xs font-medium bg-dust-700 text-sand-200 hover:bg-dust-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500"
+          className="px-2 py-0.5 rounded text-[10px] font-semibold tracking-[0.06em] btn-raised text-sand-200 hover:text-sand-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rust-500"
         >
           {playbackSpeed}x
         </button>
@@ -285,7 +285,7 @@ export function AnimationTimeline() {
               ? 'bg-rust-500/30 text-rust-300 border border-rust-500/50'
               : 'bg-dust-700 text-dust-400 hover:bg-dust-600'
           }`}
-          style={loop ? { boxShadow: '0 0 8px rgba(255,102,0,0.15)' } : undefined}
+          style={loop ? { boxShadow: '0 0 6px rgba(255,255,255,0.06)' } : undefined}
         >
           🔁
         </button>
@@ -318,7 +318,7 @@ export function AnimationTimeline() {
           aria-label="Capture scene keyframe"
           title="Capture camera + selected objects at current time"
           className="px-2 py-0.5 rounded text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/30 hover:border-cyan-500/50"
-          style={{ boxShadow: '0 0 8px rgba(0,212,255,0.15)' }}
+          style={{ boxShadow: '0 0 6px rgba(255,255,255,0.06)' }}
         >
           Capture Keyframe
         </button>

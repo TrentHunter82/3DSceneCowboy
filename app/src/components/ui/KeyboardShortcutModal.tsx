@@ -94,10 +94,10 @@ export function KeyboardShortcutModal({ isOpen, onClose }: KeyboardShortcutModal
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm"
       onClick={handleBackdropClick}
     >
-      <div className="relative w-full max-w-md mx-4 bg-dust-800 border border-dust-600/50 rounded-lg" style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.7), 0 0 1px rgba(255,102,0,0.15), inset 0 1px 0 rgba(255,255,255,0.03)' }}>
+      <div className="relative w-full max-w-md mx-4 bg-dust-800 border border-dust-600/50 rounded-lg" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.6), 0 16px 48px rgba(0,0,0,0.4)' }}>
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-dust-600/20">
-          <h2 className="text-lg font-semibold text-sand-200 flex items-center gap-2">
+          <h2 className="text-[15px] font-semibold text-sand-200 tracking-wide flex items-center gap-2 label-debossed-deep">
             <span role="img" aria-hidden="true">&#x1F920;</span>
             Keyboard Shortcuts
           </h2>

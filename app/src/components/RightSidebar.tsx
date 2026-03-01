@@ -45,7 +45,7 @@ export function RightSidebar() {
         className="w-72 flex flex-col overflow-y-auto sidebar-panel"
         role="tabpanel"
         aria-label={`${activeTab} panel`}
-        style={{ boxShadow: 'inset 1px 0 0 rgba(0,212,255,0.08), -6px 0 24px rgba(0,0,0,0.6)' }}
+        style={{ boxShadow: 'inset 1px 0 0 rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.04), -4px 0 12px rgba(0,0,0,0.5), -8px 0 32px rgba(0,0,0,0.4)' }}
       >
         <TabContent tab={activeTab} />
       </div>

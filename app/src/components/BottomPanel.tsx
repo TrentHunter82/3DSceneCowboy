@@ -51,7 +51,7 @@ export function BottomPanel() {
   }, [])
 
   return (
-    <div className="flex flex-col shrink-0 border-t border-dust-600/25 bg-dust-900 relative z-10">
+    <div className="flex flex-col shrink-0 border-t border-dust-600/25 bg-dust-900 relative z-10" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 -2px 8px rgba(0,0,0,0.5), 0 -6px 24px rgba(0,0,0,0.3)' }}>
       {/* Resize handle */}
       {!collapsed && (
         <div
@@ -71,7 +71,7 @@ export function BottomPanel() {
         aria-label={collapsed ? 'Expand timeline' : 'Collapse timeline'}
         aria-expanded={!collapsed}
       >
-        <span className="px-3 py-1.5 text-[10px] uppercase tracking-[0.08em] font-semibold text-sand-100 flex items-center gap-1.5">
+        <span className="px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] font-semibold text-sand-100 flex items-center gap-1.5 label-engraved">
           <span className="text-[10px]" aria-hidden="true">{collapsed ? '\u25B6' : '\u25BC'}</span>
           Animation Timeline
         </span>

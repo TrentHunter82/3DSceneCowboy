@@ -86,7 +86,7 @@ export function SceneStatsOverlay() {
   return (
     <div
       className="absolute top-2.5 right-2.5 bg-dust-900/95 border border-dust-600/30 rounded px-2.5 py-2 select-none pointer-events-none backdrop-blur-sm"
-      style={{ boxShadow: '0 0 16px rgba(0,0,0,0.6), 0 0 1px rgba(0,212,255,0.1), inset 0 1px 0 rgba(255,255,255,0.03)' }}
+      style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 1px 3px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.4)' }}
     >
       <div className="flex flex-col gap-1 text-[10px] font-mono">
         <div className="flex justify-between gap-4">

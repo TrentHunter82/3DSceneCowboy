@@ -50,7 +50,7 @@ function SceneGrid() {
       cellColor="#141414"
       sectionSize={5}
       sectionThickness={1}
-      sectionColor="rgba(255,102,0,0.15)"
+      sectionColor="rgba(255,255,255,0.04)"
       fadeDistance={35}
       fadeStrength={1.0}
       infiniteGrid
@@ -219,10 +219,10 @@ function SceneContent() {
         intensity={0.2}
         color="#88ccff"
       />
-      {/* Subtle orange rim from below-right for industrial accent */}
-      <pointLight position={[8, 0.5, 0]} intensity={0.15} color="#ff6600" distance={20} decay={2} />
-      {/* Cyan accent fill from back-left */}
-      <pointLight position={[-6, 2, -6]} intensity={0.08} color="#00d4ff" distance={15} decay={2} />
+      {/* Subtle warm rim from below-right */}
+      <pointLight position={[8, 0.5, 0]} intensity={0.12} color="#e8e0d8" distance={20} decay={2} />
+      {/* Cool fill from back-left */}
+      <pointLight position={[-6, 2, -6]} intensity={0.06} color="#d0d0e0" distance={15} decay={2} />
 
       {/* Environment — dark studio, no visible background */}
       <Environment preset="night" background={false} />
@@ -296,7 +296,7 @@ function ViewportOverlay() {
       {selected && (
         <div
           className="absolute top-2.5 left-2.5 bg-dust-900/95 border border-dust-600/30 rounded px-2.5 py-1 select-none pointer-events-none backdrop-blur-sm"
-          style={{ boxShadow: '0 0 16px rgba(0,0,0,0.6), 0 0 1px rgba(255,102,0,0.15), inset 0 1px 0 rgba(255,255,255,0.03)' }}
+          style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 1px 3px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.4)' }}
         >
           <span className="text-sand-200 text-[11px] font-medium tracking-wide">{selected.name}</span>
           {selected.locked && (
@@ -319,7 +319,7 @@ function ViewportOverlay() {
       {/* Tool mode indicator - bottom right */}
       <div
         className="absolute bottom-2.5 right-2.5 bg-dust-900/90 border border-dust-600/30 rounded px-2.5 py-1 select-none pointer-events-none"
-        style={{ boxShadow: '0 0 12px rgba(0,0,0,0.5), 0 0 1px rgba(255,102,0,0.1)' }}
+        style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 1px 3px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.4)' }}
       >
         <span className="text-rust-400/70 text-[10px] uppercase tracking-[0.1em] font-medium">
           {toolMode}
