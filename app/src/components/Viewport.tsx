@@ -73,9 +73,12 @@ function StoreInvalidator() {
   const ssao = usePostProcessingStore(s => s.ssao)
   const vignette = usePostProcessingStore(s => s.vignette)
 
+  // Invalidate when animation playback starts so useFrame loop kicks off
+  const isPlaying = useAnimationStore(s => s.isPlaying)
+
   useEffect(() => {
     invalidate()
-  }, [objects, selectedId, selectedIds, environment, toolMode, ppEnabled, bloom, ssao, vignette, invalidate])
+  }, [objects, selectedId, selectedIds, environment, toolMode, ppEnabled, bloom, ssao, vignette, isPlaying, invalidate])
 
   return null
 }
@@ -200,6 +203,11 @@ function CameraPathPlayback() {
   return null
 }
 
+function SceneBackground() {
+  const bg = useSceneStore(s => s.environment.backgroundColor)
+  return <color attach="background" args={[bg]} />
+}
+
 function SceneContent() {
   const objects = useSceneStore(s => s.objects)
   const selectObject = useSceneStore(s => s.selectObject)
@@ -260,8 +268,8 @@ function SceneContent() {
         <GizmoViewport labelColor="#e0e0e0" axisHeadScale={0.8} />
       </GizmoHelper>
 
-      {/* Scene background color — deep black */}
-      <color attach="background" args={['#080808']} />
+      {/* Scene background color — reactive to store */}
+      <SceneBackground />
 
       {/* Post-processing effects */}
       <PostProcessingEffects />
@@ -387,6 +395,7 @@ function SceneContextMenu() {
 
 export function Viewport() {
   const hideContextMenu = useUIStore(s => s.hideContextMenu)
+  const backgroundColor = useSceneStore(s => s.environment.backgroundColor)
 
   const handleContextMenu = useCallback((e: React.MouseEvent) => {
     e.preventDefault()
@@ -405,7 +414,7 @@ export function Viewport() {
         frameloop="demand"
         camera={{ position: [5, 5, 5], fov: 50 }}
         gl={{ antialias: true, alpha: false }}
-        style={{ background: '#080808' }}
+        style={{ background: backgroundColor }}
       >
         <SceneContent />
       </Canvas>

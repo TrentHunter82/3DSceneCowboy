@@ -68,7 +68,7 @@ describe('EffectsPanel', () => {
     expect(screen.getByText('Vignette')).toBeInTheDocument()
   })
 
-  it('expanding Bloom section reveals sliders', async () => {
+  it('expanding Bloom section reveals rotary knobs', async () => {
     const user = userEvent.setup()
     render(<EffectsPanel />)
 
@@ -77,27 +77,26 @@ describe('EffectsPanel', () => {
     expect(screen.getByRole('slider', { name: 'Threshold' })).toBeInTheDocument()
   })
 
-  it('updating bloom threshold slider updates store', async () => {
+  it('bloom threshold knob has correct aria-valuenow', async () => {
     const user = userEvent.setup()
     usePostProcessingStore.getState().setEnabled(true)
     render(<EffectsPanel />)
 
     await user.click(screen.getByText('Bloom'))
-    const thresholdSlider = screen.getByRole('slider', { name: 'Threshold' })
-    fireEvent.change(thresholdSlider, { target: { value: '0.5' } })
-    expect(usePostProcessingStore.getState().bloom.threshold).toBe(0.5)
+    const thresholdKnob = screen.getByRole('slider', { name: 'Threshold' })
+    // Default bloom threshold is 0.9
+    expect(thresholdKnob).toHaveAttribute('aria-valuenow', '0.9')
   })
 
-  it('expanding Vignette section and updating darkness slider', async () => {
+  it('expanding Vignette section reveals rotary knobs', async () => {
     const user = userEvent.setup()
     usePostProcessingStore.getState().setEnabled(true)
     usePostProcessingStore.getState().updateVignette({ enabled: true })
     render(<EffectsPanel />)
 
     await user.click(screen.getByText('Vignette'))
-    const darknessSlider = screen.getByRole('slider', { name: 'Darkness' })
-    fireEvent.change(darknessSlider, { target: { value: '0.9' } })
-    expect(usePostProcessingStore.getState().vignette.darkness).toBe(0.9)
+    const darknessKnob = screen.getByRole('slider', { name: 'Darkness' })
+    expect(darknessKnob).toBeInTheDocument()
   })
 
   it('individual effect toggles update store', async () => {

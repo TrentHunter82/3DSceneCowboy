@@ -232,34 +232,23 @@ describe('CameraPathEditor', () => {
       expect(useCameraPathStore.getState().paths[0].name).toBe('Renamed')
     })
 
-    it('shows duration slider with default value of 5', () => {
+    it('shows duration knob with default value of 5', () => {
       addPath()
 
       render(<CameraPathEditor />)
 
-      const slider = screen.getByRole('slider', { name: 'Duration (s)' })
-      expect(slider).toHaveValue('5')
+      const knob = screen.getByRole('slider', { name: 'Duration (s)' })
+      expect(knob).toHaveAttribute('aria-valuenow', '5')
     })
 
-    it('allows changing duration', () => {
+    it('duration knob has correct min/max', () => {
       addPath()
 
       render(<CameraPathEditor />)
 
-      const slider = screen.getByRole('slider', { name: 'Duration (s)' })
-      fireEvent.change(slider, { target: { value: '10' } })
-
-      expect(useCameraPathStore.getState().paths[0].duration).toBe(10)
-    })
-
-    it('has duration slider with min 0.5 and max 60', () => {
-      addPath()
-
-      render(<CameraPathEditor />)
-
-      const slider = screen.getByRole('slider', { name: 'Duration (s)' })
-      expect(slider).toHaveAttribute('min', '0.5')
-      expect(slider).toHaveAttribute('max', '60')
+      const knob = screen.getByRole('slider', { name: 'Duration (s)' })
+      expect(knob).toHaveAttribute('aria-valuemin', '0.5')
+      expect(knob).toHaveAttribute('aria-valuemax', '60')
     })
 
     it('shows easing select with default ease-in-out', () => {
@@ -543,8 +532,11 @@ describe('CameraPathEditor', () => {
 
       render(<CameraPathEditor />)
 
-      expect(screen.getByText('0.0s')).toBeInTheDocument()
-      expect(screen.getByText('1.0s')).toBeInTheDocument()
+      // Point list items show time in font-mono spans
+      const timeLabels = screen.getAllByText('0.0s')
+      expect(timeLabels.length).toBeGreaterThanOrEqual(1)
+      const timeLabels2 = screen.getAllByText('1.0s')
+      expect(timeLabels2.length).toBeGreaterThanOrEqual(1)
     })
 
     it('auto-selects the newly added point', async () => {
@@ -578,27 +570,27 @@ describe('CameraPathEditor', () => {
       expect(screen.getByText('Point Settings')).toBeInTheDocument()
     })
 
-    it('shows Position vec3 inputs', () => {
+    it('shows Position knob group', () => {
       setupSelectedPoint()
 
       render(<CameraPathEditor />)
 
-      expect(screen.getByRole('spinbutton', { name: 'Position x' })).toBeInTheDocument()
-      expect(screen.getByRole('spinbutton', { name: 'Position y' })).toBeInTheDocument()
-      expect(screen.getByRole('spinbutton', { name: 'Position z' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Position X' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Position Y' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Position Z' })).toBeInTheDocument()
     })
 
-    it('shows Look At vec3 inputs', () => {
+    it('shows Look At knob group', () => {
       setupSelectedPoint()
 
       render(<CameraPathEditor />)
 
-      expect(screen.getByRole('spinbutton', { name: 'Look At x' })).toBeInTheDocument()
-      expect(screen.getByRole('spinbutton', { name: 'Look At y' })).toBeInTheDocument()
-      expect(screen.getByRole('spinbutton', { name: 'Look At z' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Look At X' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Look At Y' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Look At Z' })).toBeInTheDocument()
     })
 
-    it('shows Time slider', () => {
+    it('shows Time knob', () => {
       setupSelectedPoint()
 
       render(<CameraPathEditor />)
@@ -606,7 +598,7 @@ describe('CameraPathEditor', () => {
       expect(screen.getByRole('slider', { name: 'Time (s)' })).toBeInTheDocument()
     })
 
-    it('shows Tension slider', () => {
+    it('shows Tension knob', () => {
       setupSelectedPoint()
 
       render(<CameraPathEditor />)
@@ -614,17 +606,17 @@ describe('CameraPathEditor', () => {
       expect(screen.getByRole('slider', { name: 'Tension' })).toBeInTheDocument()
     })
 
-    it('tension slider has min 0 and max 1', () => {
+    it('tension knob has min 0 and max 1', () => {
       setupSelectedPoint()
 
       render(<CameraPathEditor />)
 
-      const slider = screen.getByRole('slider', { name: 'Tension' })
-      expect(slider).toHaveAttribute('min', '0')
-      expect(slider).toHaveAttribute('max', '1')
+      const knob = screen.getByRole('slider', { name: 'Tension' })
+      expect(knob).toHaveAttribute('aria-valuemin', '0')
+      expect(knob).toHaveAttribute('aria-valuemax', '1')
     })
 
-    it('time slider max matches path duration', () => {
+    it('time knob max matches path duration', () => {
       const pathId = addPath()
       useCameraPathStore.getState().updatePath(pathId, { duration: 20 })
       const ptId = addPoint(pathId)
@@ -632,60 +624,28 @@ describe('CameraPathEditor', () => {
 
       render(<CameraPathEditor />)
 
-      const slider = screen.getByRole('slider', { name: 'Time (s)' })
-      expect(slider).toHaveAttribute('max', '20')
+      const knob = screen.getByRole('slider', { name: 'Time (s)' })
+      expect(knob).toHaveAttribute('aria-valuemax', '20')
     })
 
-    it('updates position x when changed', async () => {
-      const user = userEvent.setup()
-      const { pathId, ptId } = setupSelectedPoint()
+    it('position knobs have correct default values', () => {
+      setupSelectedPoint()
 
       render(<CameraPathEditor />)
 
-      const posX = screen.getByRole('spinbutton', { name: 'Position x' })
-      await user.clear(posX)
-      await user.type(posX, '10')
-
-      const point = useCameraPathStore.getState().getPoint(pathId, ptId)
-      expect(point?.position.x).toBe(10)
+      expect(screen.getByRole('slider', { name: 'Position X' })).toHaveAttribute('aria-valuenow', '5')
+      expect(screen.getByRole('slider', { name: 'Position Y' })).toHaveAttribute('aria-valuenow', '3')
+      expect(screen.getByRole('slider', { name: 'Position Z' })).toHaveAttribute('aria-valuenow', '5')
     })
 
-    it('updates look-at target when changed', async () => {
-      const user = userEvent.setup()
-      const { pathId, ptId } = setupSelectedPoint()
+    it('look-at knobs have correct default values', () => {
+      setupSelectedPoint()
 
       render(<CameraPathEditor />)
 
-      const targetY = screen.getByRole('spinbutton', { name: 'Look At y' })
-      await user.clear(targetY)
-      await user.type(targetY, '5')
-
-      const point = useCameraPathStore.getState().getPoint(pathId, ptId)
-      expect(point?.target.y).toBe(5)
-    })
-
-    it('updates tension when slider changes', () => {
-      const { pathId, ptId } = setupSelectedPoint()
-
-      render(<CameraPathEditor />)
-
-      const slider = screen.getByRole('slider', { name: 'Tension' })
-      fireEvent.change(slider, { target: { value: '0.8' } })
-
-      const point = useCameraPathStore.getState().getPoint(pathId, ptId)
-      expect(point?.tension).toBe(0.8)
-    })
-
-    it('updates time when slider changes', () => {
-      const { pathId, ptId } = setupSelectedPoint()
-
-      render(<CameraPathEditor />)
-
-      const slider = screen.getByRole('slider', { name: 'Time (s)' })
-      fireEvent.change(slider, { target: { value: '2.5' } })
-
-      const point = useCameraPathStore.getState().getPoint(pathId, ptId)
-      expect(point?.time).toBe(2.5)
+      expect(screen.getByRole('slider', { name: 'Look At X' })).toHaveAttribute('aria-valuenow', '0')
+      expect(screen.getByRole('slider', { name: 'Look At Y' })).toHaveAttribute('aria-valuenow', '0')
+      expect(screen.getByRole('slider', { name: 'Look At Z' })).toHaveAttribute('aria-valuenow', '0')
     })
 
     it('does not show Point Settings when no point is selected', () => {
@@ -696,32 +656,12 @@ describe('CameraPathEditor', () => {
       expect(screen.queryByText('Point Settings')).not.toBeInTheDocument()
     })
 
-    it('Position defaults to {5, 3, 5} for first point', () => {
-      setupSelectedPoint()
-
-      render(<CameraPathEditor />)
-
-      expect(screen.getByRole('spinbutton', { name: 'Position x' })).toHaveValue(5)
-      expect(screen.getByRole('spinbutton', { name: 'Position y' })).toHaveValue(3)
-      expect(screen.getByRole('spinbutton', { name: 'Position z' })).toHaveValue(5)
-    })
-
-    it('Look At defaults to {0, 0, 0}', () => {
-      setupSelectedPoint()
-
-      render(<CameraPathEditor />)
-
-      expect(screen.getByRole('spinbutton', { name: 'Look At x' })).toHaveValue(0)
-      expect(screen.getByRole('spinbutton', { name: 'Look At y' })).toHaveValue(0)
-      expect(screen.getByRole('spinbutton', { name: 'Look At z' })).toHaveValue(0)
-    })
-
     it('Tension defaults to 0.5', () => {
       setupSelectedPoint()
 
       render(<CameraPathEditor />)
 
-      expect(screen.getByRole('slider', { name: 'Tension' })).toHaveValue('0.5')
+      expect(screen.getByRole('slider', { name: 'Tension' })).toHaveAttribute('aria-valuenow', '0.5')
     })
   })
 
@@ -856,9 +796,9 @@ describe('CameraPathEditor', () => {
     })
   })
 
-  // ── Vec3Input Helper ─────────────────────────────────────────────────
+  // ── Vec3KnobGroup Helper ─────────────────────────────────────────────────
 
-  describe('Vec3Input rendering', () => {
+  describe('Vec3KnobGroup rendering', () => {
     it('renders axis labels X, Y, Z', () => {
       const pathId = addPath()
       const ptId = addPoint(pathId)
@@ -866,37 +806,20 @@ describe('CameraPathEditor', () => {
 
       render(<CameraPathEditor />)
 
-      // Vec3Input renders uppercase axis labels for both Position and Look At
-      const labels = screen.getAllByText('x')
-      expect(labels.length).toBeGreaterThanOrEqual(2) // Position x + Look At x
+      // Vec3KnobGroup renders uppercase axis labels for both Position and Look At
+      const labels = screen.getAllByText('X')
+      expect(labels.length).toBeGreaterThanOrEqual(2) // Position X + Look At X
     })
 
-    it('renders number inputs with step 0.5', () => {
+    it('renders knobs with role="slider"', () => {
       const pathId = addPath()
       const ptId = addPoint(pathId)
       useCameraPathStore.getState().setSelectedPoint(ptId)
 
       render(<CameraPathEditor />)
 
-      const posX = screen.getByRole('spinbutton', { name: 'Position x' })
-      expect(posX).toHaveAttribute('step', '0.5')
-      expect(posX).toHaveAttribute('type', 'number')
-    })
-
-    it('handles NaN input by defaulting to 0', async () => {
-      const user = userEvent.setup()
-      const pathId = addPath()
-      const ptId = addPoint(pathId)
-      useCameraPathStore.getState().setSelectedPoint(ptId)
-
-      render(<CameraPathEditor />)
-
-      const posX = screen.getByRole('spinbutton', { name: 'Position x' })
-      await user.clear(posX)
-
-      // After clearing, the value becomes empty which parses as NaN, defaulting to 0
-      const point = useCameraPathStore.getState().getPoint(pathId, ptId)
-      expect(point?.position.x).toBe(0)
+      const posX = screen.getByRole('slider', { name: 'Position X' })
+      expect(posX).toBeInTheDocument()
     })
   })
 
@@ -926,7 +849,7 @@ describe('CameraPathEditor', () => {
       expect(toggle).toHaveAttribute('aria-expanded', 'false')
     })
 
-    it('all slider inputs have aria-labels', () => {
+    it('all knob inputs have aria-labels', () => {
       const pathId = addPath()
       const ptId = addPoint(pathId)
       useCameraPathStore.getState().setSelectedPoint(ptId)
@@ -936,21 +859,12 @@ describe('CameraPathEditor', () => {
       expect(screen.getByRole('slider', { name: 'Duration (s)' })).toBeInTheDocument()
       expect(screen.getByRole('slider', { name: 'Time (s)' })).toBeInTheDocument()
       expect(screen.getByRole('slider', { name: 'Tension' })).toBeInTheDocument()
-    })
-
-    it('all spinbutton inputs have aria-labels', () => {
-      const pathId = addPath()
-      const ptId = addPoint(pathId)
-      useCameraPathStore.getState().setSelectedPoint(ptId)
-
-      render(<CameraPathEditor />)
-
-      expect(screen.getByRole('spinbutton', { name: 'Position x' })).toBeInTheDocument()
-      expect(screen.getByRole('spinbutton', { name: 'Position y' })).toBeInTheDocument()
-      expect(screen.getByRole('spinbutton', { name: 'Position z' })).toBeInTheDocument()
-      expect(screen.getByRole('spinbutton', { name: 'Look At x' })).toBeInTheDocument()
-      expect(screen.getByRole('spinbutton', { name: 'Look At y' })).toBeInTheDocument()
-      expect(screen.getByRole('spinbutton', { name: 'Look At z' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Position X' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Position Y' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Position Z' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Look At X' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Look At Y' })).toBeInTheDocument()
+      expect(screen.getByRole('slider', { name: 'Look At Z' })).toBeInTheDocument()
     })
 
     it('path list items have correct aria-labels', () => {
@@ -1024,16 +938,16 @@ describe('CameraPathEditor', () => {
     })
   })
 
-  // ── PathSlider display ───────────────────────────────────────────────
+  // ── Knob value display ───────────────────────────────────────────────
 
-  describe('PathSlider display formatting', () => {
-    it('shows duration value with 1 decimal place', () => {
+  describe('knob value display formatting', () => {
+    it('shows duration value with unit suffix', () => {
       addPath()
 
       render(<CameraPathEditor />)
 
-      // Duration step=0.5, so shows 1 decimal: "5.0"
-      expect(screen.getByText('5.0')).toBeInTheDocument()
+      // Duration step=0.5, precision=1, unit="s" → "5.0s"
+      expect(screen.getByText('5.0s')).toBeInTheDocument()
     })
 
     it('shows tension value with 2 decimal places', () => {

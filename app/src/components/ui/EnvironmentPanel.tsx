@@ -1,5 +1,6 @@
 import { useSceneStore } from '../../stores/useSceneStore'
 import { CollapsibleSection } from './CollapsibleSection'
+import { RotaryKnob } from './RotaryKnob'
 
 export function EnvironmentPanel() {
   const environment = useSceneStore(s => s.environment)
@@ -42,28 +43,28 @@ export function EnvironmentPanel() {
               />
               <span className="text-xs text-dust-500 font-mono">{environment.fogColor}</span>
             </div>
-            <div>
-              <label className="text-xs text-dust-300 mb-1 block">Near: {environment.fogNear}</label>
-              <input
-                type="range"
+            <div className="flex items-center justify-around gap-1">
+              <RotaryKnob
+                value={environment.fogNear}
+                onChange={v => updateEnvironment({ fogNear: Math.round(v) })}
+                label="Near"
+                size="sm"
                 min={1}
                 max={50}
-                value={environment.fogNear}
+                step={1}
+                accent="cyan"
                 aria-label="Fog near distance"
-                onChange={e => updateEnvironment({ fogNear: parseInt(e.target.value) })}
-                className="w-full accent-rust-500"
               />
-            </div>
-            <div>
-              <label className="text-xs text-dust-300 mb-1 block">Far: {environment.fogFar}</label>
-              <input
-                type="range"
+              <RotaryKnob
+                value={environment.fogFar}
+                onChange={v => updateEnvironment({ fogFar: Math.round(v) })}
+                label="Far"
+                size="sm"
                 min={10}
                 max={200}
-                value={environment.fogFar}
+                step={1}
+                accent="rust"
                 aria-label="Fog far distance"
-                onChange={e => updateEnvironment({ fogFar: parseInt(e.target.value) })}
-                className="w-full accent-rust-500"
               />
             </div>
           </div>

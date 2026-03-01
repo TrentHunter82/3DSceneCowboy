@@ -1,48 +1,6 @@
-import { useId } from 'react'
 import { usePostProcessingStore } from '../stores/usePostProcessingStore'
 import { CollapsibleSection } from './ui/CollapsibleSection'
-
-function SliderInput({
-  label,
-  value,
-  onChange,
-  min = 0,
-  max = 1,
-  step = 0.01,
-  disabled = false,
-}: {
-  label: string
-  value: number
-  onChange: (v: number) => void
-  min?: number
-  max?: number
-  step?: number
-  disabled?: boolean
-}) {
-  const id = useId()
-  return (
-    <div className="mb-2">
-      <div className="flex items-center justify-between mb-1">
-        <label htmlFor={id} className="text-xs text-dust-400">{label}</label>
-        <span className="text-xs text-dust-500 font-mono w-12 text-right">
-          {value.toFixed(step < 0.01 ? 3 : 2)}
-        </span>
-      </div>
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        disabled={disabled}
-        aria-label={label}
-        onChange={e => onChange(parseFloat(e.target.value))}
-        className="w-full h-1 bg-dust-700 rounded-lg appearance-none cursor-pointer accent-rust-500 disabled:opacity-40 disabled:cursor-not-allowed"
-      />
-    </div>
-  )
-}
+import { RotaryKnob } from './ui/RotaryKnob'
 
 function EffectToggle({
   label,
@@ -120,33 +78,41 @@ export function EffectsPanel() {
             onChange={v => updateBloom({ enabled: v })}
             disabled={muted}
           />
-          <SliderInput
-            label="Intensity"
-            value={bloom.intensity}
-            onChange={v => updateBloom({ intensity: v })}
-            min={0}
-            max={5}
-            step={0.1}
-            disabled={muted || !bloom.enabled}
-          />
-          <SliderInput
-            label="Threshold"
-            value={bloom.threshold}
-            onChange={v => updateBloom({ threshold: v })}
-            min={0}
-            max={1}
-            step={0.01}
-            disabled={muted || !bloom.enabled}
-          />
-          <SliderInput
-            label="Radius"
-            value={bloom.radius}
-            onChange={v => updateBloom({ radius: v })}
-            min={0}
-            max={1}
-            step={0.01}
-            disabled={muted || !bloom.enabled}
-          />
+          <div className="flex items-center justify-around gap-1 mb-2">
+            <RotaryKnob
+              value={bloom.intensity}
+              onChange={v => updateBloom({ intensity: v })}
+              label="Intensity"
+              size="sm"
+              min={0}
+              max={5}
+              step={0.1}
+              accent="rust"
+              disabled={muted || !bloom.enabled}
+            />
+            <RotaryKnob
+              value={bloom.threshold}
+              onChange={v => updateBloom({ threshold: v })}
+              label="Threshold"
+              size="sm"
+              min={0}
+              max={1}
+              step={0.01}
+              accent="cyan"
+              disabled={muted || !bloom.enabled}
+            />
+            <RotaryKnob
+              value={bloom.radius}
+              onChange={v => updateBloom({ radius: v })}
+              label="Radius"
+              size="sm"
+              min={0}
+              max={1}
+              step={0.01}
+              accent="rust"
+              disabled={muted || !bloom.enabled}
+            />
+          </div>
         </CollapsibleSection>
 
         {/* SSAO */}
@@ -157,33 +123,41 @@ export function EffectsPanel() {
             onChange={v => updateSSAO({ enabled: v })}
             disabled={muted}
           />
-          <SliderInput
-            label="AO Intensity"
-            value={ssao.intensity}
-            onChange={v => updateSSAO({ intensity: v })}
-            min={0}
-            max={50}
-            step={1}
-            disabled={muted || !ssao.enabled}
-          />
-          <SliderInput
-            label="AO Radius"
-            value={ssao.radius}
-            onChange={v => updateSSAO({ radius: v })}
-            min={0}
-            max={10}
-            step={0.1}
-            disabled={muted || !ssao.enabled}
-          />
-          <SliderInput
-            label="Bias"
-            value={ssao.bias}
-            onChange={v => updateSSAO({ bias: v })}
-            min={0}
-            max={0.1}
-            step={0.001}
-            disabled={muted || !ssao.enabled}
-          />
+          <div className="flex items-center justify-around gap-1 mb-2">
+            <RotaryKnob
+              value={ssao.intensity}
+              onChange={v => updateSSAO({ intensity: v })}
+              label="AO Int."
+              size="sm"
+              min={0}
+              max={50}
+              step={1}
+              accent="rust"
+              disabled={muted || !ssao.enabled}
+            />
+            <RotaryKnob
+              value={ssao.radius}
+              onChange={v => updateSSAO({ radius: v })}
+              label="AO Radius"
+              size="sm"
+              min={0}
+              max={10}
+              step={0.1}
+              accent="cyan"
+              disabled={muted || !ssao.enabled}
+            />
+            <RotaryKnob
+              value={ssao.bias}
+              onChange={v => updateSSAO({ bias: v })}
+              label="Bias"
+              size="sm"
+              min={0}
+              max={0.1}
+              step={0.001}
+              accent="rust"
+              disabled={muted || !ssao.enabled}
+            />
+          </div>
         </CollapsibleSection>
 
         {/* Vignette */}
@@ -194,24 +168,30 @@ export function EffectsPanel() {
             onChange={v => updateVignette({ enabled: v })}
             disabled={muted}
           />
-          <SliderInput
-            label="Offset"
-            value={vignette.offset}
-            onChange={v => updateVignette({ offset: v })}
-            min={0}
-            max={1}
-            step={0.01}
-            disabled={muted || !vignette.enabled}
-          />
-          <SliderInput
-            label="Darkness"
-            value={vignette.darkness}
-            onChange={v => updateVignette({ darkness: v })}
-            min={0}
-            max={1}
-            step={0.01}
-            disabled={muted || !vignette.enabled}
-          />
+          <div className="flex items-center justify-around gap-1 mb-2">
+            <RotaryKnob
+              value={vignette.offset}
+              onChange={v => updateVignette({ offset: v })}
+              label="Offset"
+              size="sm"
+              min={0}
+              max={1}
+              step={0.01}
+              accent="cyan"
+              disabled={muted || !vignette.enabled}
+            />
+            <RotaryKnob
+              value={vignette.darkness}
+              onChange={v => updateVignette({ darkness: v })}
+              label="Darkness"
+              size="sm"
+              min={0}
+              max={1}
+              step={0.01}
+              accent="rust"
+              disabled={muted || !vignette.enabled}
+            />
+          </div>
         </CollapsibleSection>
       </div>
 

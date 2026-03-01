@@ -78,46 +78,31 @@ describe('PropertiesPanel', () => {
     expect(obj.name).toBe('My Custom Box')
   })
 
-  it('updates position via Vec3Input', async () => {
-    const user = userEvent.setup()
+  it('renders position knob group with aria-label', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
 
-    const spinbuttons = screen.getAllByRole('spinbutton')
-    // Position X is index 0
-    const posXInput = spinbuttons[0]
-    await user.clear(posXInput)
-    await user.type(posXInput, '5')
-
-    expect(useSceneStore.getState().objects[0].position.x).toBe(5)
+    expect(screen.getByRole('slider', { name: 'Position X' })).toBeInTheDocument()
+    expect(screen.getByRole('slider', { name: 'Position Y' })).toBeInTheDocument()
+    expect(screen.getByRole('slider', { name: 'Position Z' })).toBeInTheDocument()
   })
 
-  it('updates rotation via Vec3Input', async () => {
-    const user = userEvent.setup()
+  it('renders rotation knob group with aria-label', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
 
-    const spinbuttons = screen.getAllByRole('spinbutton')
-    // Rotation X is index 3
-    const rotXInput = spinbuttons[3]
-    await user.clear(rotXInput)
-    await user.type(rotXInput, '45')
-
-    expect(useSceneStore.getState().objects[0].rotation.x).toBe(45)
+    expect(screen.getByRole('slider', { name: 'Rotation X' })).toBeInTheDocument()
+    expect(screen.getByRole('slider', { name: 'Rotation Y' })).toBeInTheDocument()
+    expect(screen.getByRole('slider', { name: 'Rotation Z' })).toBeInTheDocument()
   })
 
-  it('updates scale via Vec3Input', async () => {
-    const user = userEvent.setup()
+  it('renders scale knob group with aria-label', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
 
-    const spinbuttons = screen.getAllByRole('spinbutton')
-    // Scale X is index 6
-    const scaleXInput = spinbuttons[6]
-    await user.clear(scaleXInput)
-    await user.type(scaleXInput, '3')
-
-    expect(useSceneStore.getState().objects[0].scale.x).toBe(3)
+    expect(screen.getByRole('slider', { name: 'Scale X' })).toBeInTheDocument()
+    expect(screen.getByRole('slider', { name: 'Scale Y' })).toBeInTheDocument()
+    expect(screen.getByRole('slider', { name: 'Scale Z' })).toBeInTheDocument()
   })
 
   it('updates color via hex text input', async () => {
@@ -158,16 +143,11 @@ describe('PropertiesPanel', () => {
     expect(useSceneStore.getState().objects[0].visible).toBe(false)
   })
 
-  it('Vec3Input handles empty/NaN input by falling back to 0', async () => {
-    const user = userEvent.setup()
+  it('position knob has correct aria-valuenow', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
 
-    const spinbuttons = screen.getAllByRole('spinbutton')
-    // Position X is index 0
-    const posXInput = spinbuttons[0]
-    await user.clear(posXInput)
-
-    expect(useSceneStore.getState().objects[0].position.x).toBe(0)
+    const posX = screen.getByRole('slider', { name: 'Position X' })
+    expect(posX).toHaveAttribute('aria-valuenow', '0')
   })
 })

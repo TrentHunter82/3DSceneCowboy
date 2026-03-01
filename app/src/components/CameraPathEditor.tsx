@@ -1,6 +1,8 @@
-import { useId, useCallback } from 'react'
+import { useCallback } from 'react'
 import { useCameraPathStore } from '../stores/useCameraPathStore'
 import { CollapsibleSection } from './ui/CollapsibleSection'
+import { RotaryKnob } from './ui/RotaryKnob'
+import { Vec3KnobGroup } from './ui/Vec3KnobGroup'
 import type { CameraPathEasing } from '../types/cameraPath'
 import type { Vec3 } from '../types/scene'
 
@@ -13,79 +15,6 @@ const EASINGS: { value: CameraPathEasing; label: string }[] = [
   { value: 'ease-out', label: 'Ease Out' },
   { value: 'ease-in-out', label: 'Ease In-Out' },
 ]
-
-function PathSlider({
-  label,
-  value,
-  onChange,
-  min = 0,
-  max = 1,
-  step = 0.01,
-  disabled = false,
-}: {
-  label: string
-  value: number
-  onChange: (v: number) => void
-  min?: number
-  max?: number
-  step?: number
-  disabled?: boolean
-}) {
-  const id = useId()
-  return (
-    <div className="mb-2">
-      <div className="flex items-center justify-between mb-1">
-        <label htmlFor={id} className="text-xs text-dust-400">{label}</label>
-        <span className="text-xs text-dust-500 font-mono w-12 text-right">
-          {value.toFixed(step < 0.1 ? 2 : step < 1 ? 1 : 0)}
-        </span>
-      </div>
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        disabled={disabled}
-        aria-label={label}
-        onChange={e => onChange(parseFloat(e.target.value))}
-        className="w-full h-1 bg-dust-700 rounded-lg appearance-none cursor-pointer accent-rust-500 disabled:opacity-40 disabled:cursor-not-allowed"
-      />
-    </div>
-  )
-}
-
-function Vec3Input({
-  label,
-  value,
-  onChange,
-}: {
-  label: string
-  value: Vec3
-  onChange: (v: Vec3) => void
-}) {
-  return (
-    <div className="mb-2">
-      <label className="text-xs text-dust-400 block mb-1">{label}</label>
-      <div className="flex gap-1">
-        {(['x', 'y', 'z'] as const).map(axis => (
-          <div key={axis} className="flex-1">
-            <label className="text-[9px] text-dust-500 uppercase block mb-0.5">{axis}</label>
-            <input
-              type="number"
-              value={Number(value[axis].toFixed(2))}
-              step={0.5}
-              onChange={e => onChange({ ...value, [axis]: parseFloat(e.target.value) || 0 })}
-              className={inputClass}
-              aria-label={`${label} ${axis}`}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
 
 /** SVG mini-visualization of the camera path from above (XZ plane) */
 function PathPreview({ points }: { points: Array<{ position: Vec3; target: Vec3 }> }) {
@@ -341,14 +270,20 @@ export function CameraPathEditor() {
                   aria-label="Path name"
                 />
               </div>
-              <PathSlider
-                label="Duration (s)"
-                value={activePath.duration}
-                onChange={v => updatePath(activePath.id, { duration: v })}
-                min={0.5}
-                max={60}
-                step={0.5}
-              />
+              <div className="flex justify-center mb-2">
+                <RotaryKnob
+                  value={activePath.duration}
+                  onChange={v => updatePath(activePath.id, { duration: v })}
+                  label="Duration"
+                  aria-label="Duration (s)"
+                  size="sm"
+                  min={0.5}
+                  max={60}
+                  step={0.5}
+                  unit="s"
+                  accent="cyan"
+                />
+              </div>
               <div className="mb-2">
                 <label className="text-xs text-dust-400 block mb-1">Easing</label>
                 <select
@@ -460,32 +395,42 @@ export function CameraPathEditor() {
             {/* Selected Point Editor */}
             {selectedPoint && (
               <CollapsibleSection title="Point Settings">
-                <Vec3Input
+                <Vec3KnobGroup
                   label="Position"
                   value={selectedPoint.position}
                   onChange={pos => updatePoint(activePath.id, selectedPoint.id, { position: pos })}
+                  step={0.5}
                 />
-                <Vec3Input
+                <Vec3KnobGroup
                   label="Look At"
                   value={selectedPoint.target}
                   onChange={tgt => updatePoint(activePath.id, selectedPoint.id, { target: tgt })}
+                  step={0.5}
                 />
-                <PathSlider
-                  label="Time (s)"
-                  value={selectedPoint.time}
-                  onChange={v => updatePoint(activePath.id, selectedPoint.id, { time: v })}
-                  min={0}
-                  max={activePath.duration}
-                  step={0.1}
-                />
-                <PathSlider
-                  label="Tension"
-                  value={selectedPoint.tension}
-                  onChange={v => updatePoint(activePath.id, selectedPoint.id, { tension: v })}
-                  min={0}
-                  max={1}
-                  step={0.05}
-                />
+                <div className="flex items-center justify-around gap-1 mb-2">
+                  <RotaryKnob
+                    value={selectedPoint.time}
+                    onChange={v => updatePoint(activePath.id, selectedPoint.id, { time: v })}
+                    label="Time"
+                    aria-label="Time (s)"
+                    size="sm"
+                    min={0}
+                    max={activePath.duration}
+                    step={0.1}
+                    unit="s"
+                    accent="cyan"
+                  />
+                  <RotaryKnob
+                    value={selectedPoint.tension}
+                    onChange={v => updatePoint(activePath.id, selectedPoint.id, { tension: v })}
+                    label="Tension"
+                    size="sm"
+                    min={0}
+                    max={1}
+                    step={0.05}
+                    accent="rust"
+                  />
+                </div>
               </CollapsibleSection>
             )}
           </>

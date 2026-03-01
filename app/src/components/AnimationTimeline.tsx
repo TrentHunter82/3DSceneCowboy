@@ -84,6 +84,8 @@ export function AnimationTimeline() {
 
   const handleTimelineMouseDown = useCallback(
     (e: MouseEvent) => {
+      // Only respond to left-click (button 0), ignore right-click
+      if (e.button !== 0) return
       // Only respond to clicks in the timeline area (past the label column)
       const el = timelineRef.current
       if (!el) return
@@ -185,8 +187,22 @@ export function AnimationTimeline() {
   const handleKeyframeRightClick = useCallback((trackId: string, keyframeId: string, e: globalThis.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    removeKeyframe(trackId, keyframeId)
-  }, [removeKeyframe])
+
+    // For camera tracks, remove all keyframes at the same time (cameraPosition + cameraTarget pair)
+    const track = tracks.find(t => t.id === trackId)
+    const kf = track?.keyframes.find(k => k.id === keyframeId)
+    if (track && kf && isCameraTrack(track)) {
+      const TIME_THRESHOLD = 0.001
+      const pairedIds = track.keyframes
+        .filter(k => Math.abs(k.time - kf.time) < TIME_THRESHOLD)
+        .map(k => k.id)
+      for (const id of pairedIds) {
+        removeKeyframe(trackId, id)
+      }
+    } else {
+      removeKeyframe(trackId, keyframeId)
+    }
+  }, [removeKeyframe, tracks])
 
   const handleTrackDoubleClick = useCallback((trackId: string, e: globalThis.MouseEvent) => {
     const time = getTimeFromMouseX(e.clientX)
@@ -549,18 +565,19 @@ function TrackRow({
           return (
             <div
               key={kf.id}
-              className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 text-[10px] leading-none cursor-pointer hover:scale-150 transition-transform ${
+              className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 leading-none cursor-pointer hover:scale-125 transition-transform select-none ${
                 isCamera
                   ? 'text-cyan-400 hover:text-cyan-300'
                   : 'text-sunset-400 hover:text-sunset-300'
               }`}
-              style={{ left: `${pct}%` }}
+              style={{ left: `${pct}%`, fontSize: 14, padding: '2px 4px' }}
               title={isCamera
                 ? `Camera @ ${kf.time.toFixed(2)}s - Click: edit easing, Right-click: delete`
                 : `${kf.property} @ ${kf.time.toFixed(2)}s (${kf.easing}) - Click: edit easing, Right-click: delete`
               }
-              onClick={e => onKeyframeClick(track.id, kf.id, e.nativeEvent)}
+              onClick={e => { e.stopPropagation(); onKeyframeClick(track.id, kf.id, e.nativeEvent) }}
               onContextMenu={e => onKeyframeRightClick(track.id, kf.id, e.nativeEvent)}
+              onMouseDown={e => e.stopPropagation()}
             >
               ◆
             </div>

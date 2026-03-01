@@ -410,15 +410,12 @@ describe('PropertiesPanel Accessibility', () => {
     expect(screen.getByLabelText('Scale Z')).toBeInTheDocument()
   })
 
-  it('axis inputs have proper htmlFor/id connections', () => {
+  it('axis knobs have proper aria-label attributes', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
-    // Verify that the label elements are properly connected via htmlFor
-    const posX = screen.getByLabelText('Position X')
-    expect(posX.id).toBeTruthy()
-    // The label element should have the matching htmlFor
-    const label = document.querySelector(`label[for="${posX.id}"]`)
-    expect(label).toBeTruthy()
+    // RotaryKnob uses aria-label on role="slider" elements
+    const posX = screen.getByRole('slider', { name: 'Position X' })
+    expect(posX).toHaveAttribute('aria-label', 'Position X')
   })
 
   it('material color picker has aria-label="Material color picker"', () => {
@@ -438,28 +435,25 @@ describe('PropertiesPanel Accessibility', () => {
     expect(hexInput).toHaveAttribute('maxLength', '7')
   })
 
-  it('Metalness slider has aria-label', () => {
+  it('Metalness knob has aria-label', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
-    const metalness = screen.getByLabelText('Metalness')
+    const metalness = screen.getByRole('slider', { name: 'Metal' })
     expect(metalness).toBeInTheDocument()
-    expect(metalness).toHaveAttribute('type', 'range')
   })
 
-  it('Roughness slider has aria-label', () => {
+  it('Roughness knob has aria-label', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
-    const roughness = screen.getByLabelText('Roughness')
+    const roughness = screen.getByRole('slider', { name: 'Rough' })
     expect(roughness).toBeInTheDocument()
-    expect(roughness).toHaveAttribute('type', 'range')
   })
 
-  it('Opacity slider has aria-label', () => {
+  it('Opacity knob has aria-label', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
-    const opacity = screen.getByLabelText('Opacity')
+    const opacity = screen.getByRole('slider', { name: 'Opacity' })
     expect(opacity).toBeInTheDocument()
-    expect(opacity).toHaveAttribute('type', 'range')
   })
 
   it('collapsible sections have aria-expanded attribute', () => {
@@ -507,14 +501,13 @@ describe('PropertiesPanel Accessibility', () => {
     expect(screen.getByText('Select an object to view its properties')).toBeInTheDocument()
   })
 
-  it('slider inputs have proper min/max/step attributes', () => {
+  it('knob inputs have proper aria-valuemin/max attributes', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
 
-    const opacity = screen.getByLabelText('Opacity')
-    expect(opacity).toHaveAttribute('min', '0')
-    expect(opacity).toHaveAttribute('max', '1')
-    expect(opacity).toHaveAttribute('step', '0.01')
+    const opacity = screen.getByRole('slider', { name: 'Opacity' })
+    expect(opacity).toHaveAttribute('aria-valuemin', '0')
+    expect(opacity).toHaveAttribute('aria-valuemax', '1')
   })
 })
 
@@ -596,28 +589,26 @@ describe('EnvironmentPanel Accessibility', () => {
     expect(fogColor).toHaveAttribute('type', 'color')
   })
 
-  it('fog near distance slider has aria-label', async () => {
+  it('fog near distance knob has aria-label', async () => {
     const user = userEvent.setup()
     useSceneStore.getState().updateEnvironment({ fogEnabled: true })
     render(<EnvironmentPanel />)
     await user.click(screen.getByRole('button', { name: /environment/i }))
 
-    const nearSlider = screen.getByLabelText('Fog near distance')
-    expect(nearSlider).toHaveAttribute('type', 'range')
-    expect(nearSlider).toHaveAttribute('min', '1')
-    expect(nearSlider).toHaveAttribute('max', '50')
+    const nearKnob = screen.getByRole('slider', { name: 'Fog near distance' })
+    expect(nearKnob).toHaveAttribute('aria-valuemin', '1')
+    expect(nearKnob).toHaveAttribute('aria-valuemax', '50')
   })
 
-  it('fog far distance slider has aria-label', async () => {
+  it('fog far distance knob has aria-label', async () => {
     const user = userEvent.setup()
     useSceneStore.getState().updateEnvironment({ fogEnabled: true })
     render(<EnvironmentPanel />)
     await user.click(screen.getByRole('button', { name: /environment/i }))
 
-    const farSlider = screen.getByLabelText('Fog far distance')
-    expect(farSlider).toHaveAttribute('type', 'range')
-    expect(farSlider).toHaveAttribute('min', '10')
-    expect(farSlider).toHaveAttribute('max', '200')
+    const farKnob = screen.getByRole('slider', { name: 'Fog far distance' })
+    expect(farKnob).toHaveAttribute('aria-valuemin', '10')
+    expect(farKnob).toHaveAttribute('aria-valuemax', '200')
   })
 
   it('fog controls are hidden when fog is disabled', async () => {
@@ -784,27 +775,19 @@ describe('Semantic Structure', () => {
     expect(hiddenIcon).toHaveAttribute('aria-hidden', 'true')
   })
 
-  it('Vec3Input labels are connected to inputs via htmlFor/id', () => {
+  it('Vec3KnobGroup axes have aria-label attributes', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
-    // For each axis input, verify the id attribute exists and matches a label
-    const posX = screen.getByLabelText('Position X')
-    const id = posX.getAttribute('id')
-    expect(id).toBeTruthy()
-    const label = document.querySelector(`label[for="${id}"]`)
-    expect(label).not.toBeNull()
-    expect(label!.textContent).toBe('X')
+    // RotaryKnob uses aria-label directly on role="slider" elements
+    const posX = screen.getByRole('slider', { name: 'Position X' })
+    expect(posX).toHaveAttribute('aria-label', 'Position X')
   })
 
-  it('SliderInput labels are connected to inputs via htmlFor/id', () => {
+  it('RotaryKnob has aria-label attribute', () => {
     useSceneStore.getState().addObject('box')
     render(<PropertiesPanel />)
-    const metalness = screen.getByLabelText('Metalness')
-    const id = metalness.getAttribute('id')
-    expect(id).toBeTruthy()
-    const label = document.querySelector(`label[for="${id}"]`)
-    expect(label).not.toBeNull()
-    expect(label!.textContent).toBe('Metalness')
+    const metal = screen.getByRole('slider', { name: 'Metal' })
+    expect(metal).toHaveAttribute('aria-label', 'Metal')
   })
 
   it('material type select has label connection', () => {

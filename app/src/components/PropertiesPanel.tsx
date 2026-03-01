@@ -1,90 +1,11 @@
-import { useId, useRef, useCallback } from 'react'
+import { useRef, useCallback } from 'react'
 import { useSceneStore } from '../stores/useSceneStore'
 import { CollapsibleSection } from './ui/CollapsibleSection'
 import { MaterialPresets } from './ui/MaterialPresets'
 import { EmptyState } from './ui/EmptyState'
-import type { Vec3, MaterialType, MaterialData, TextureMap, Vec2 } from '../types/scene'
-
-const inputClass =
-  'w-full bg-dust-900 border border-dust-600/50 rounded px-1.5 py-1 text-[11px] text-sand-200 hover:border-dust-500/70 focus:border-rust-500/50 focus:ring-1 focus:ring-rust-500/20 focus:outline-none transition-all duration-150'
-
-function Vec3Input({
-  label,
-  value,
-  onChange,
-  step = 0.1,
-}: {
-  label: string
-  value: Vec3
-  onChange: (v: Vec3) => void
-  step?: number
-}) {
-  const id = useId()
-  return (
-    <div className="mb-2.5" role="group" aria-label={label}>
-      <span className="text-[10px] text-dust-300 uppercase tracking-[0.06em] mb-1 block font-medium">
-        {label}
-      </span>
-      <div className="grid grid-cols-3 gap-1">
-        {(['x', 'y', 'z'] as const).map(axis => (
-          <div key={axis} className="flex items-center gap-1">
-            <label htmlFor={`${id}-${axis}`} className="text-[10px] text-dust-500 w-3">{axis.toUpperCase()}</label>
-            <input
-              id={`${id}-${axis}`}
-              type="number"
-              value={value[axis]}
-              step={step}
-              aria-label={`${label} ${axis.toUpperCase()}`}
-              onChange={e =>
-                onChange({ ...value, [axis]: parseFloat(e.target.value) || 0 })
-              }
-              className={inputClass}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-function SliderInput({
-  label,
-  value,
-  onChange,
-  min = 0,
-  max = 1,
-  step = 0.01,
-}: {
-  label: string
-  value: number
-  onChange: (v: number) => void
-  min?: number
-  max?: number
-  step?: number
-}) {
-  const id = useId()
-  return (
-    <div className="mb-2">
-      <div className="flex items-center justify-between mb-0.5">
-        <label htmlFor={id} className="text-[10px] text-dust-300 font-medium">{label}</label>
-        <span className="text-[10px] text-dust-400 font-mono w-8 text-right">
-          {value.toFixed(2)}
-        </span>
-      </div>
-      <input
-        id={id}
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        aria-label={label}
-        onChange={e => onChange(parseFloat(e.target.value))}
-        className="w-full"
-      />
-    </div>
-  )
-}
+import { RotaryKnob } from './ui/RotaryKnob'
+import { Vec3KnobGroup } from './ui/Vec3KnobGroup'
+import type { MaterialType, MaterialData, TextureMap, Vec2 } from '../types/scene'
 
 
 function TextureMapInput({
@@ -245,21 +166,26 @@ export function PropertiesPanel() {
 
         {/* Transform Section (collapsible) */}
         <CollapsibleSection title="Transform" variant="primary">
-          <Vec3Input
+          <Vec3KnobGroup
             label="Position"
             value={selected.position}
             onChange={pos => updateObject(selected.id, { position: pos })}
           />
-          <Vec3Input
+          <Vec3KnobGroup
             label="Rotation"
             value={selected.rotation}
             onChange={rot => updateObject(selected.id, { rotation: rot })}
             step={5}
+            min={-360}
+            max={360}
           />
-          <Vec3Input
+          <Vec3KnobGroup
             label="Scale"
             value={selected.scale}
             onChange={scl => updateObject(selected.id, { scale: scl })}
+            step={0.1}
+            min={0.01}
+            max={100}
           />
         </CollapsibleSection>
 
@@ -317,26 +243,33 @@ export function PropertiesPanel() {
 
           {/* Metalness & Roughness (standard material only) */}
           {material.type === 'standard' && (
-            <>
-              <SliderInput
-                label="Metalness"
+            <div className="flex items-center justify-around gap-1 mb-2">
+              <RotaryKnob
                 value={material.metalness}
                 onChange={v => updateMaterial({ metalness: v })}
+                label="Metal"
+                size="sm"
+                accent="cyan"
               />
-              <SliderInput
-                label="Roughness"
+              <RotaryKnob
                 value={material.roughness}
                 onChange={v => updateMaterial({ roughness: v })}
+                label="Rough"
+                size="sm"
+                accent="rust"
               />
-            </>
+            </div>
           )}
 
           {/* Opacity */}
-          <SliderInput
-            label="Opacity"
-            value={material.opacity}
-            onChange={v => updateMaterial({ opacity: v, transparent: v < 1 })}
-          />
+          <div className="flex justify-center mb-2">
+            <RotaryKnob
+              value={material.opacity}
+              onChange={v => updateMaterial({ opacity: v, transparent: v < 1 })}
+              label="Opacity"
+              size="sm"
+            />
+          </div>
 
           {/* Wireframe */}
           <div className="mb-1.5">
@@ -413,25 +346,33 @@ export function PropertiesPanel() {
                   />
                 </div>
               </div>
-              <SliderInput
-                label="Emissive Intensity"
-                value={material.emissiveIntensity ?? 0}
-                onChange={v => updateMaterial({ emissiveIntensity: v })}
-                min={0}
-                max={5}
-                step={0.1}
-              />
+              <div className="flex justify-center mb-2">
+                <RotaryKnob
+                  value={material.emissiveIntensity ?? 0}
+                  onChange={v => updateMaterial({ emissiveIntensity: v })}
+                  label="Emissive Int."
+                  size="sm"
+                  min={0}
+                  max={5}
+                  step={0.1}
+                  accent="rust"
+                />
+              </div>
             </div>
 
             {/* Environment Map Intensity */}
-            <SliderInput
-              label="Env Map Intensity"
-              value={material.envMapIntensity ?? 1}
-              onChange={v => updateMaterial({ envMapIntensity: v })}
-              min={0}
-              max={2}
-              step={0.05}
-            />
+            <div className="flex justify-center mb-2">
+              <RotaryKnob
+                value={material.envMapIntensity ?? 1}
+                onChange={v => updateMaterial({ envMapIntensity: v })}
+                label="Env Map Int."
+                size="sm"
+                min={0}
+                max={2}
+                step={0.05}
+                accent="cyan"
+              />
+            </div>
           </CollapsibleSection>
         )}
 
